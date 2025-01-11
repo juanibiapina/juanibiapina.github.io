@@ -1,4 +1,9 @@
 ---
-const { title, url } = Astro.props
+const { title, url, description } = Astro.props;
 ---
-<li><a href={url}>{title}</a></li>
+<div class="mb-8">
+  <a href={url} class="block">
+    <h2 class="text-xl text-blue-500 hover:underline mb-1">{title}</h2>
+    <p class="text-gray-700">{description}</p>
+  </a>
+</div>

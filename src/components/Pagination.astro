@@ -1,0 +1,22 @@
+---
+const { currentPage, totalPages } = Astro.props;
+---
+
+<div class="flex justify-center gap-2 mt-8">
+  {currentPage > 1 && (
+    <a href={`/page/${currentPage - 1}`} class="px-4 py-2 text-gray-600 hover:text-gray-900">Previous</a>
+  )}
+
+  {[...Array(totalPages)].map((_, i) => (
+    <a
+      href={i === 0 ? "/" : `/page/${i + 1}`}
+      class={`px-4 py-2 ${currentPage === i + 1 ? "bg-gray-200" : ""} text-gray-600 hover:text-gray-900`}
+    >
+      {i + 1}
+    </a>
+  ))}
+
+  {currentPage < totalPages && (
+    <a href={`/page/${currentPage + 1}`} class="px-4 py-2 text-gray-600 hover:text-gray-900">Next</a>
+  )}
+</div>
