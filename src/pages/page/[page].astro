@@ -4,30 +4,29 @@ import BlogPost from '../../components/BlogPost.astro';
 import Pagination from '../../components/Pagination.astro';
 import { getPaginatedPosts } from '../../utils/posts';
 
-export async function getStaticPaths() {
-  const { totalPages } = await getPaginatedPosts(1);
-
-  return Array.from({ length: totalPages - 1 }, (_, i) => {
-    const page = i + 2; // Start from page 2 since page 1 is index
-    return {
-      params: { page: page.toString() },
-      props: { page },
-    };
-  });
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getPaginatedPosts(1);
+  return [
+    { params: { page: 1 }, props: allPosts },
+    ...Array.from({ length: allPosts.totalPages - 1 }, (_, i) => ({
+      params: { page: i + 2 },
+      props: getPaginatedPosts(i + 2),
+    })),
+  ];
 }
 
-const { page } = Astro.props;
-const { posts, totalPages, currentPage } = await getPaginatedPosts(parseInt(page));
+const { posts: currentPosts, totalPages, currentPage } = Astro.props;
 const pageTitle = `Posts - Page ${currentPage}`;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <h1 class="text-4xl font-bold mb-12 border-b pb-4">{pageTitle}</h1>
-  {posts.map((post) => (
+  {currentPosts.map((post) => (
     <BlogPost
       url={post.url}
       title={post.frontmatter.title}
       description={post.frontmatter.description}
+      pubDate={post.frontmatter.pubDate}
     />
   ))}
   <Pagination currentPage={currentPage} totalPages={totalPages} />

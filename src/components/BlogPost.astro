@@ -1,11 +1,22 @@
 ---
-const { title, url, description } = Astro.props;
+const { title, url, description, pubDate } = Astro.props;
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
 ---
 <div class="mb-8">
   <a href={url} class="block group">
     <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
       {title}
     </h2>
+    <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+      {formatDate(pubDate)}
+    </div>
     <p class="text-gray-600 dark:text-gray-400">
       {description}
     </p>
