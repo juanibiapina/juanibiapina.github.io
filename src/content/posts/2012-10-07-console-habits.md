@@ -6,12 +6,13 @@ pubDate: 2012-10-07
 
 Some time ago, my friend Duck wrote a very small shell script to check our console habits. Here is my current version, after some modifications. It uses `history` from zsh, so you might need to change it if you're using bash (with contributions from Bruno Maioli and Serge Gebhardt):
 
-{% highlight sh %}
+```bash
 alias habits='\history -500 -1 | sed "s/^[[:space:]]*[0-9]*[[:space:]]*//" | sort | uniq -c | sort -n -r | head -n 10'
-{% endhighlight %}
+```
 
 This allows me to check what sorts of commands I usually type. I use this idea to find ways to make my programming environment more efficient. This is my current habits output:
 
+```
      174 g s
       37 g a .
       21 g push
@@ -22,6 +23,7 @@ This allows me to check what sorts of commands I usually type. I use this idea t
       11 g d
        9 vim
        6 g a -u .
+```
 
 `g` is just an alias for git, and most git commands I use are also aliased on my global config. `r s` (rails server), `guard` and `vim` are called automatically by tmuxinator when I want to switch projects.
 
