@@ -1,0 +1,42 @@
+---
+---
+<button
+  id="theme-toggle"
+  type="button"
+  class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg relative"
+  aria-label="Toggle dark mode"
+>
+  <!-- Sun icon -->
+  <i id="theme-toggle-light-icon" class="fas fa-sun w-5 h-5 absolute transition-opacity duration-300 text-lg"></i>
+  <!-- Moon icon -->
+  <i id="theme-toggle-dark-icon" class="fas fa-moon w-5 h-5 absolute transition-opacity duration-300 text-lg"></i>
+  <!-- Spacer to maintain button size -->
+  <span class="w-5 h-5 inline-block"></span>
+</button>
+
+<script>
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  const lightIcon = document.getElementById('theme-toggle-light-icon');
+  const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+  function updateIcons() {
+    const isDark = html.classList.contains('dark');
+    if (lightIcon && darkIcon) {
+      lightIcon.style.opacity = isDark ? '0' : '1';
+      darkIcon.style.opacity = isDark ? '1' : '0';
+    }
+  }
+
+  function toggleTheme() {
+    html.classList.toggle('dark');
+    localStorage.setItem('color-theme', html.classList.contains('dark') ? 'dark' : 'light');
+    updateIcons();
+  }
+
+  // Initial icon state
+  updateIcons();
+
+  // Add click handler
+  themeToggleBtn?.addEventListener('click', toggleTheme);
+</script>

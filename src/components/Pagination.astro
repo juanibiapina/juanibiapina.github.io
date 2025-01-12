@@ -1,0 +1,36 @@
+---
+const { currentPage, totalPages } = Astro.props;
+---
+
+<div class="flex justify-center gap-2 mt-8">
+  {currentPage > 1 && (
+    <a
+      href={`/page/${currentPage - 1}`}
+      class="px-4 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+    >
+      Previous
+    </a>
+  )}
+
+  {[...Array(totalPages)].map((_, i) => (
+    <a
+      href={i === 0 ? "/" : `/page/${i + 1}`}
+      class={`px-4 py-2 rounded-lg ${
+        currentPage === i + 1
+          ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
+          : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+      }`}
+    >
+      {i + 1}
+    </a>
+  ))}
+
+  {currentPage < totalPages && (
+    <a
+      href={`/page/${currentPage + 1}`}
+      class="px-4 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+    >
+      Next
+    </a>
+  )}
+</div>
