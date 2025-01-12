@@ -1,5 +1,5 @@
 ---
-const { title, url, description, pubDate } = Astro.props;
+const { title, url, description, pubDate, readingTime } = Astro.props;
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('en-US', {
@@ -15,7 +15,7 @@ function formatDate(date: Date) {
       {title}
     </h2>
     <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-      {formatDate(pubDate)}
+      {formatDate(pubDate)} • {readingTime}
     </div>
     <p class="text-gray-600 dark:text-gray-400">
       {description}

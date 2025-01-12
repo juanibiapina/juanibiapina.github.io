@@ -8,6 +8,7 @@ export interface Post {
     title: string;
     description: string;
     pubDate: Date;
+    readingTime?: string;
   };
 }
 
@@ -20,19 +21,24 @@ export async function getPaginatedPosts(page: number = 1) {
       const dateB = new Date(b.data.pubDate);
       return dateB.getTime() - dateA.getTime();
     })
-    .map(post => ({
-      url: `/posts/${post.slug}/`,
-      frontmatter: {
-        title: post.data.title,
-        description: post.data.description,
-        pubDate: post.data.pubDate
-      }
-    }));
+    .map(async post => {
+      const { remarkPluginFrontmatter } = await post.render();
+      return {
+        url: `/posts/${post.slug}/`,
+        frontmatter: {
+          title: post.data.title,
+          description: post.data.description,
+          pubDate: post.data.pubDate,
+          readingTime: remarkPluginFrontmatter.readingTime
+        }
+      };
+    });
 
-  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+  const resolvedPosts = await Promise.all(sortedPosts);
+  const totalPages = Math.ceil(resolvedPosts.length / POSTS_PER_PAGE);
   const start = (page - 1) * POSTS_PER_PAGE;
   const end = start + POSTS_PER_PAGE;
-  const currentPosts = sortedPosts.slice(start, end);
+  const currentPosts = resolvedPosts.slice(start, end);
 
   return {
     posts: currentPosts,

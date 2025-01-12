@@ -11,7 +11,9 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, remarkPluginFrontmatter } = await post.render();
+
+console.log('Post render result:', { remarkPluginFrontmatter });
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('en-US', {
@@ -26,7 +28,7 @@ function formatDate(date: Date) {
   <article class="prose dark:prose-invert">
     <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-white">{post.data.title}</h1>
     <div class="text-sm text-gray-500 dark:text-gray-400 mb-4">
-      {formatDate(post.data.pubDate)}
+      {formatDate(post.data.pubDate)} • {remarkPluginFrontmatter?.readingTime}
     </div>
     <div class="mb-8 text-gray-600 dark:text-gray-400">{post.data.description}</div>
     <Content />

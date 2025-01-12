@@ -16,6 +16,7 @@ const { posts: currentPosts, totalPages, currentPage } = await getPaginatedPosts
       title={post.frontmatter.title}
       description={post.frontmatter.description}
       pubDate={post.frontmatter.pubDate}
+      readingTime={post.frontmatter.readingTime}
     />
   ))}
   <Pagination currentPage={currentPage} totalPages={totalPages} />
