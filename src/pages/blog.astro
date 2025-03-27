@@ -9,7 +9,6 @@ const { posts: currentPosts, totalPages, currentPage } = await getPaginatedPosts
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h1 class="text-4xl font-bold mb-12 border-b pb-4">{pageTitle}</h1>
   {currentPosts.map((post) => (
     <BlogPost
       url={post.url}
