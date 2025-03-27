@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPost from '../components/BlogPost.astro';
+import Pagination from '../components/Pagination.astro';
+import { getPaginatedPosts } from '../utils/posts';
+
+const pageTitle = "Blog";
+const { posts: currentPosts, totalPages, currentPage } = await getPaginatedPosts(1);
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <h1 class="text-4xl font-bold mb-12 border-b pb-4">{pageTitle}</h1>
+  {currentPosts.map((post) => (
+    <BlogPost
+      url={post.url}
+      title={post.frontmatter.title}
+      description={post.frontmatter.description}
+      pubDate={post.frontmatter.pubDate}
+      readingTime={post.frontmatter.readingTime}
+    />
+  ))}
+  <Pagination currentPage={currentPage} totalPages={totalPages} />
+</BaseLayout>
