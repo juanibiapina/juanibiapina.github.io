@@ -1,9 +1,8 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
+  # Build on pushes to any branch
   push:
-    branches: [ main ]
   # Allow you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -25,6 +24,8 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # Only deploy from the main branch
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
