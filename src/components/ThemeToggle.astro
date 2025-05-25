@@ -1,5 +1,6 @@
 ---
 ---
+
 <button
   id="theme-toggle"
   type="button"
@@ -10,6 +11,8 @@
   <i id="theme-toggle-light-icon" class="fas fa-sun w-5 h-5 absolute transition-opacity duration-300 text-lg"></i>
   <!-- Moon icon -->
   <i id="theme-toggle-dark-icon" class="fas fa-moon w-5 h-5 absolute transition-opacity duration-300 text-lg"></i>
+  <!-- System icon -->
+  <i id="theme-toggle-system-icon" class="fas fa-desktop w-5 h-5 absolute transition-opacity duration-300 text-lg"></i>
   <!-- Spacer to maintain button size -->
   <span class="w-5 h-5 inline-block"></span>
 </button>
@@ -19,24 +22,66 @@
   const html = document.documentElement;
   const lightIcon = document.getElementById('theme-toggle-light-icon');
   const darkIcon = document.getElementById('theme-toggle-dark-icon');
+  const systemIcon = document.getElementById('theme-toggle-system-icon');
+  const darkMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      html.classList.add('dark');
+    } else if (theme === 'light') {
+      html.classList.remove('dark');
+    } else {
+      // System
+      if (darkMediaQuery.matches) {
+        html.classList.add('dark');
+      } else {
+        html.classList.remove('dark');
+      }
+    }
+    updateIcons();
+  }
+
+  function getNextTheme(current) {
+    return current === 'light' ? 'dark' : current === 'dark' ? 'system' : 'light';
+  }
+
+  function getStoredTheme() {
+    return localStorage.getItem('theme') || 'system';
+  }
 
   function updateIcons() {
-    const isDark = html.classList.contains('dark');
-    if (lightIcon && darkIcon) {
-      lightIcon.style.opacity = isDark ? '0' : '1';
-      darkIcon.style.opacity = isDark ? '1' : '0';
+    const theme = getStoredTheme();
+    const isDark = theme === 'dark' || (theme === 'system' && darkMediaQuery.matches);
+
+    if (lightIcon && darkIcon && systemIcon) {
+      lightIcon.style.opacity = theme === 'light' ? '1' : '0';
+      darkIcon.style.opacity = theme === 'dark' ? '1' : '0';
+      systemIcon.style.opacity = theme === 'system' ? '1' : '0';
     }
   }
 
   function toggleTheme() {
-    html.classList.toggle('dark');
-    localStorage.setItem('color-theme', html.classList.contains('dark') ? 'dark' : 'light');
-    updateIcons();
+    const current = getStoredTheme();
+    const next = getNextTheme(current);
+
+    if (next === 'system') {
+      localStorage.removeItem('theme');
+    } else {
+      localStorage.setItem('theme', next);
+    }
+
+    applyTheme(next);
   }
 
-  // Initial icon state
-  updateIcons();
+  // Apply theme on load
+  applyTheme(getStoredTheme());
 
-  // Add click handler
+  // Update when system theme changes and we're in "system" mode
+  darkMediaQuery.addEventListener('change', () => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme('system');
+    }
+  });
+
   themeToggleBtn?.addEventListener('click', toggleTheme);
 </script>
