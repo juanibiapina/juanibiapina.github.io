@@ -13,10 +13,6 @@ export default defineConfig({
     remarkPlugins: [remarkReadingTime],
   },
 
-  content: {
-    remarkPlugins: [remarkReadingTime],
-  },
-
   vite: {
     plugins: [tailwindcss()],
   },
