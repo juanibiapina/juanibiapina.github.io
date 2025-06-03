@@ -1,9 +1,7 @@
 ---
-layout: single
 title: "Optimizing Function Closures"
 description: "Optimizing closure environments to contain only what is really needed."
-category: articles
-tags: [programming languages, development, marco, closure, functions, optimization]
+pubDate: 2013-12-27
 ---
 
 In this post I want to talk about optimizations for function closures.
@@ -22,11 +20,11 @@ This is the definition of evaluating a closure (hence, a function with lexical s
 
 Consider the evaluation of the following code:
 
-{% highlight racket %}
+```racket
 (def y 1)
 (def f (function (x) (+ x y)))
 (def z 42)
-{% endhighlight %}
+```
 
 `f` is bound to a closure object that holds the following data:
 
@@ -38,7 +36,7 @@ So what is currently on that environment?
 
 Obviously, `+` and `y` have to be, because they are used in the body. With a bit of cleverness that I might eventually talk about, `f` also is (to allow recursion with anonymous functions). What about `z`?
 
-I wrote in [this other post](http://juanibiapina.com/articles/2013-11-29-functions-in-marco/) that `z` would be available. I have changed this now, and things declared after the declaration of the function are not available, by definition. With that I might have killed mutual recursion for now. I'll figure that out later.
+I wrote in [this other post](/2013-11-29-functions-in-marco/) that `z` would be available. I have changed this now, and things declared after the declaration of the function are not available, by definition. With that I might have killed mutual recursion for now. I'll figure that out later.
 
 The interesting question here is: What about `-`? What about `*`, `def`, `set!` etc?
 
@@ -66,9 +64,9 @@ The way it is currently done, if you defined a function that uses a variable tha
 
 Consider the following code:
 
-{% highlight racket %}
+```racket
 (def f (function (x) (let (a x) a)))
-{% endhighlight %}
+```
 
 `f` is a function that takes one argument and returns it. When evaluating this function definition, I have no way to know at that point that the first `a` is not actually a symbol lookup (it is actually defining `a` to be `x`). It has special meaning because of the evaluation semantics of `let`.
 
@@ -80,7 +78,7 @@ The "better" approach would be to peek into the body of the function, find the `
 
 ## Results
 
-Running the same tests as the [previous post](http://juanibiapina.com/articles/2013-12-16-trampolining-in-marco/):
+Running the same tests as the [previous post](/2013-12-16-trampolining-in-marco/):
 
 Previous:
 

@@ -1,9 +1,7 @@
 ---
-layout: single
 title: "Evaluation Rules of Marco"
 description: "Complete description of evaluation rules in Marco"
-category: articles
-tags: [programming languages, functions, semantics, marco, evaluation rules]
+pubDate: 2013-12-02
 ---
 
 Marco's evaluation rules are a simplified form of Racket's. I'll summarize them here.
@@ -12,20 +10,20 @@ Marco's evaluation rules are a simplified form of Racket's. I'll summarize them 
 
 Values expressions evaluate to themselves:
 
-{% highlight racket %}
+```racket
 42
 "string value"
 true
 nil
-{% endhighlight %}
+```
 
 ## Symbols
 
 The evaluation of a symbol consist of looking up that binding in the current environment. This applies to `def`, `var` and parameter bindings.
 
-{% highlight racket %}
+```racket
 x // looks up the value of x in the current environment and returns it
-{% endhighlight %}
+```
 
 ## Lists
 
@@ -37,11 +35,11 @@ For functions, each element in the tail of the list is evaluated. Then, the func
 
 Example:
 
-{% highlight racket %}
+```racket
 (def do-something (function (n a) body))
 (def age 30)
 (do-something "name" age)
-{% endhighlight %}
+```
 
 The last line will first evaluate `do-something` to a function, then evaluate the string "name" to itself, then evaluate the symbol `age` to the number 30. Then `n` and `a` will be bound to "name" and 30. Then `body` will be evaluated.
 
@@ -49,11 +47,11 @@ The last line will first evaluate `do-something` to a function, then evaluate th
 
 Macros evaluate exactly like functions, except the tail arguments are not evaluated until explicitly requested:
 
-{% highlight racket %}
+```racket
 (def unless (macro (e1 e2 e3) (if (eval e1) (eval e3) (eval e2))))
 
 (unless true (+ 1 2) (+ 3 4))
-{% endhighlight %}
+```
 
 In the last line, `unless` will evaluate to the macro above. The arguments to `unless`, which are lists, will not evaluate (so the summing won't happen), until it is explicitly requested in the `eval` calls above.
 
@@ -67,11 +65,11 @@ That's it. Marco doesn't have special forms or any exceptions to these rules. I'
 
 On the other hand, consider an expresison like this one (proposed by Duck):
 
-{% highlight racket %}
+```racket
 (var t 3)
 (def f (function (x) (set! x 1)))
 (f t)
-{% endhighlight %}
+```
 
 `f` is a function that takes an argument and mutates it. Duck's intuition (based on the previous post) was that, since the passed variable is mutable, the parameter mutation would be possible, and the final result stored in `t` would be 1.
 
@@ -85,9 +83,9 @@ Second, you can think of it this way: You don't need to check the caller of a fu
 
 Consider this other situation, instead:
 
-{% highlight racket %}
+```racket
 (def setx (function (value) (set! x value))
-{% endhighlight %}
+```
 
 Just by looking at the function, one cannot know at that point if `x` is mutable or not. Whenever `x` is defined, it will either be mutable or not, but won't be able to change mutability based on context.
 

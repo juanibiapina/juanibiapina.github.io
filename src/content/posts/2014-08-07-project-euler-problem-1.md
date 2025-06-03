@@ -1,9 +1,7 @@
 ---
-layout: single
 title: "Project Euler - Problem 1"
 description: "Solving the first problem in Project Euler using Marco"
-category: articles
-tags: [programming languages, development, marco, project euler, programming challenges]
+pubDate: 2014-08-07
 ---
 
 In this post I'll show how to solve the first problem on Project Euler using Marco, while at the same time introducing some new features of the language.
@@ -26,10 +24,10 @@ I'll try to break the code in terms of some features of Marco.
 
 Modules are the main blocks for code organization in Marco. Let's require the necessary modules for our solution:
 
-{% highlight racket %}
+```racket
 (def :io (require "io"))
 (def :integer (require "integer"))
-{% endhighlight %}
+```
 
 The `io` module has some input and output functions. The `integer` module has functions for parsing and generating integers.
 
@@ -39,9 +37,9 @@ Notice how `require` doesn't actually do anything to the environment; It has no 
 
 In order to access members of modules, we use the dot notation:
 
-{% highlight racket %}
+```racket
 (def :n (integer.parse (io.read-line io.stdin)))
-{% endhighlight %}
+```
 
 This will bind `n` to the result of parsing an integer from a line of input.
 
@@ -49,12 +47,12 @@ This will bind `n` to the result of parsing an integer from a line of input.
 
 Let's define a function to sum all numbers in a list:
 
-{% highlight racket %}
+```racket
 (def :sum (function [:list] {
   (if (nil? list) { 0 }
     { (+ (head list) (recurse (tail list))) })
 }))
-{% endhighlight %}
+```
 
 `sum` is a function that takes a list. In case the list is nil (the empty list), we say the sum is zero. Otherwise, add the head of the list to the sum of its tail.
 
@@ -64,11 +62,11 @@ Notice the `recurse` binding being used. Since all functions are anonymous in Ma
 
 Let's define a function to check whether a number should be included in the final sum:
 
-{% highlight racket %}
+```racket
 (def :include? (function [:n] {
   (or { (= (% n 3) 0) } { (= (% n 5) 0) })
 }))
-{% endhighlight %}
+```
 
 Notice the `or` function. It takes two arguments, both being blocks. It invokes the first one in a lexical scope; if it returns true, it short circuits and never really invokes the second.
 
@@ -78,7 +76,7 @@ Blocks are how you perform delayed evaluation in Marco. Any code that needs to b
 
 This is the final solution including generating the final result using `filter` and printing it:
 
-{% highlight racket %}
+```racket
 (def :io (require "io"))
 (def :integer (require "integer"))
 
@@ -96,6 +94,6 @@ This is the final solution including generating the final result using `filter` 
 (def :result (sum (filter (integer.range 1 n) include?)))
 
 (print result)
-{% endhighlight %}
+```
 
 Let me know of any thoughts on any of this. Feedback is always appreciated.

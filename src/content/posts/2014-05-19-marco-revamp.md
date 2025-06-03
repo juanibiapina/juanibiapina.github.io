@@ -1,9 +1,7 @@
 ---
-layout: single
 title: "Marco Revamp"
 description: "Eliminating Semantic Ambiguities in Marco."
-category: articles
-tags: [programming languages, development, marco, semantic ambiguity]
+pubDate: 2014-05-19
 ---
 
 Ever since Marco's fourth rewrite (when things finally started to get serious), it has been heavily inspired by Lisp. One of my initial goals was to have a macro system similar to Clojure's.
@@ -12,7 +10,7 @@ Now that the language has evolved, I have started making decisions based on some
 
 This is the result so far:
 
-{% highlight racket %}
+```racket
 (def :collatz (function [:n] {
   (if (= n 1)
     { (cons 1 nil) }
@@ -24,7 +22,7 @@ This is the result so far:
 (def :max-n 100)
 
 (print (list-max (map length (map collatz (range 1 (+ max-n 1))))))
-{% endhighlight %}
+```
 
 But I'll explain.
 
@@ -34,7 +32,7 @@ I have changed most of the language syntactic and semantics to adopt a new princ
 
 Let me give an example:
 
-{% highlight ruby %}
+```ruby
 class Ball
   def roll(roll=5)
     puts "Rolling at speed #{roll}"
@@ -43,7 +41,7 @@ class Ball
 end
 
 Ball.new.roll
-{% endhighlight %}
+```
 
 Is `roll` a method or a variable?
 
@@ -77,25 +75,25 @@ Let's compare the `if` function:
 
 Before:
 
-{% highlight racket %}
+```racket
 (if (= n 1) (cons 1 2) (error))
-{% endhighlight %}
+```
 
 `if` used to be a macro that took three parameters: a condition, a then clause and an else clause. It would evaluate the condition in lexical scope and then evaluate either the then or else clause accordingly. Where is the semantic ambiguity?
 
 Why isn't `(error)` evaluated to a function call the causes an error? Because of the inherent semantics of the `if` macro. If `if` was a user defined function, this evaluation would be different. For instance:
 
-{% highlight racket %}
+```racket
 (do-stuff (= n 1) (cons 1 2) (error))
-{% endhighlight %}
+```
 
 This would evaluate all the arguments normally if `do-stuff` were a function. If this was Racket or Common List, `do-stuff` might even be a macro. Now you need to read that macro to understand what is evaluated and when.
 
 After:
 
-{% highlight racket %}
+```racket
 (if (= n 1) { (cons 1 2) } { (error) })
-{% endhighlight %}
+```
 
 In the new version, `if` is a function. It takes three arguments: a boolean, a then block and an else block. If the boolean is true, it invokes the then block. Otherwise it invokes the else block.
 

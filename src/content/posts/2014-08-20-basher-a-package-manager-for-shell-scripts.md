@@ -1,9 +1,7 @@
 ---
-layout: single
 title: "A Package Manager For Shell Scripts"
 description: "Introducing basher."
-category: articles
-tags: [bash, package manager, basher, zsh, fish, shell, scripts, shell script, scripting]
+pubDate: 2014-08-20
 ---
 
 In this post I'll introduce [basher](https://github.com/basherpm/basher), a package manager for shell scripts.
@@ -30,9 +28,9 @@ I also want to go to github, find a script I like, install it with one line and 
 
 So I wrote [basher](https://github.com/basherpm/basher). With it installed, you can do this:
 
-{% highlight sh %}
+```sh
 $ basher install basherpm/bats
-{% endhighlight %}
+```
 
 There, `bats` is in your PATH ready to be used. Whatever OS.
 
@@ -40,21 +38,21 @@ The install command looks for a repository on github, clones it to a known locat
 
 I can also list installed packages easily:
 
-{% highlight sh %}
+```sh
 $ basher list
-{% endhighlight %}
+```
 
 And uninstall (with completion support):
 
-{% highlight sh %}
+```sh
 $ basher uninstall basherpm/bats
-{% endhighlight %}
+```
 
 Or check for outdated packages:
 
-{% highlight sh %}
+```sh
 $ basher outdated
-{% endhighlight %}
+```
 
 Check the `commands` command for a full list. Try also `basher help <command>`.
 

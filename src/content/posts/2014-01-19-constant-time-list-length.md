@@ -1,9 +1,7 @@
 ---
-layout: single
 title: "Constant Time List Length"
 description: "Optimizing the list length function in Marco."
-category: articles
-tags: [programming languages, development, marco, lists, length, constant time]
+pubDate: 2014-01-19
 ---
 
 ## The current length
@@ -12,12 +10,12 @@ After I decided to implement Tail Call Optimization in Marco, I realized there w
 
 A simple one is list length. Here is the previous non-optimized version:
 
-{% highlight racket %}
+```racket
 (def length (function (l)
               (if (nil? l)
                 0
                 (+ 1 (length (tail l))))))
-{% endhighlight %}
+```
 
 The cool thing about it, is that it is implemented in Marco itself. That was very rewarding for me. On the other hand, it performs horribly. It has to go through the whole list every time. How can we solve this?
 
@@ -25,7 +23,7 @@ The cool thing about it, is that it is implemented in Marco itself. That was ver
 
 List are immutable in Marco, so the size of a list will never change. That means we can cache its length. Combine that with dynamic dispatch, and we get this solution:
 
-{% highlight java %}
+```java
 public class MarcoNil implements MarcoList {
     public int length() {
         return 0;
@@ -52,7 +50,7 @@ public class MarcoPair implements MarcoList {
         return length;
     }
 }
-{% endhighlight %}
+```
 
 Nil is a list with length zero. A pair is a list (if its second element is a list) whose size is always one plus the length of the tail list. The logic here is the same as before, but this is implemented in constant time (one addition when consing to a list).
 
@@ -60,7 +58,7 @@ How big is the difference?
 
 ## Results
 
-If we take the code [from this previous post with trampolines](http://juanibiapina.com/articles/2013-12-16-trampolining-in-marco/) and replace the `my-length` function with our new optimized length (and also optimized closures), we get these new results:
+If we take the code [from this previous post with trampolines](/2013-12-16-trampolining-in-marco/) and replace the `my-length` function with our new optimized length (and also optimized closures), we get these new results:
 
 Previous results with optimized closures:
 

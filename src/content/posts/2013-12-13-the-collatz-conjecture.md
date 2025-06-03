@@ -1,9 +1,7 @@
 ---
-layout: single
 title: "The Collatz Conjecture"
 description: "Using Marco to solve programming challenges."
-category: articles
-tags: [programming languages, tools, development, marco, collatz, hailstone, sequences]
+pubDate: 2013-12-13
 ---
 
 In this post I'll try to solve the Collatz challenge using Marco.
@@ -26,7 +24,7 @@ Find the longest hailstone sequence for `n` between 1 and 1000000 (1 million).
 
 A hailstone sequence can be easily computer with a recursive function:
 
-{% highlight racket %}
+```racket
 (def collatz (function (n)
                (if (= n 1)
                    (cons 1 nil)
@@ -36,7 +34,7 @@ A hailstone sequence can be easily computer with a recursive function:
                              (collatz (+ (* 3 n) 1)))))))
 
 (print (collatz 6))
-{% endhighlight %}
+```
 
     '(6 3 10 5 16 8 4 2 1)
 
@@ -44,34 +42,34 @@ Here we define `collatz` to be a function that takes a number `n` and generates 
 
 Let's set the max value of 100 for now (1 million comes much later):
 
-{% highlight racket %}
+```racket
 (def max-n 100)
-{% endhighlight %}
+```
 
 We can now generate all numbers from 1 to max:
 
-{% highlight racket %}
+```racket
 (def ns (range 1 (+ 1 max-n)))
-{% endhighlight %}
+```
 
 And generate the sequence for each number:
 
-{% highlight racket %}
+```racket
 (def sequences (map collatz ns))
-{% endhighlight %}
+```
 
 Then we can calculate the size of each sequence:
 
-{% highlight racket %}
+```racket
 (def sizes (map length sequences))
-{% endhighlight %}
+```
 
 And print the max:
 
-{% highlight racket %}
+```racket
 (def result (list-max sizes))
 (print result)
-{% endhighlight %}
+```
 
 There! Solved! Let's go home! Or actually...
 
@@ -96,4 +94,3 @@ This sample code uses the following new features of Marco:
 Lists in Marco are built on top of pairs and nil: A list is either nil (empty list), or a pair where the second element is a list.
 
 So, `(cons 1 2)` returns a pair, but `(cons 1 nil)` is a one element list. To make a bigger list, you can use `(cons 1 (cons 2 (cons 3 nil)))`, which is what is used in the recursive call in `collatz`.
-

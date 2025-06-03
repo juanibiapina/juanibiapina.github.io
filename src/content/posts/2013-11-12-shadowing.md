@@ -1,17 +1,15 @@
 ---
-layout: single
 title: "Shadowing"
 description: "Shadowing in Ruby and obscure language features"
-category: articles
-tags: [shadowing, ruby, good code, bad code, rails]
+pubDate: 2013-11-12
 ---
 
 In Ruby you can do this:
 
-{% highlight ruby %}
+```ruby
 puts = 1
 puts(puts)
-{% endhighlight %}
+```
 
 What will it output? Let's follow simple evaluation rules:
 
@@ -35,7 +33,7 @@ And this is a silly example, right? You would never find code like this in produ
 
 Sure.
 
-{% highlight ruby %}
+```ruby
 def clear_some_cache(id, clear_other_cache = false)
   do_something
   clear_other_cache(id) if clear_other_cache
@@ -44,6 +42,6 @@ end
 def clear_other_cache(id)
   do_the_other_thing
 end
-{% endhighlight %}
+```
 
 Ignoring the other major problems with this code for now, this is from production code. This code was written with shadowing and exploiting this semantics on purpose, not by accident.

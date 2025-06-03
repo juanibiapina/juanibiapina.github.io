@@ -1,22 +1,20 @@
 ---
-layout: single
 title: "Tail Call Optimization in Marco"
 description: "Tail calls in Marco and code readability."
-category: articles
-tags: [programming languages, development, marco, TCO, tail calls, continuations, CPS]
+pubDate: 2014-03-14
 ---
 
 One of the main goals of the Marco language is that the interpreter code should be very easy to understand. It should be possible for almost any programmer without experience developing programming languages to read the code and understand what's going on at a high level.
 
 Even though the current state of the code requires lots of refactoring (since I tend to experiment a lot with it), I'm proud to say that I'm still walking towards that goal.
 
-I have recently added TCO to Marco, in a similar way to the previous [trampoline post](http://juanibiapina.com/articles/2013-12-16-trampolining-in-marco/). Let me show you the two main consequences to code quality:
+I have recently added TCO to Marco, in a similar way to the previous [trampoline post](/2013-12-16-trampolining-in-marco/). Let me show you the two main consequences to code quality:
 
 ## Interpreter Changes
 
 Here is part of the code for the `if` special form:
 
-{% highlight java %}
+```java
 @Override
 public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
     MarcoObject condition = arguments.get(0);
@@ -31,7 +29,7 @@ public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         return new MarcoContinuation(elseClause, environment);
     }
 }
-{% endhighlight %}
+```
 
 It should not be difficult to read:
 
@@ -51,7 +49,7 @@ Catch: You need to know that continuations are being used to implement tail call
 
 This is the new Marco code for finding the max collatz sequence up to some number `n`:
 
-{% highlight racket %}
+```racket
 (def collatz-size (function (n)
                     (let (helper (function (n size)
                                    (if (= n 1)
@@ -70,7 +68,7 @@ This is the new Marco code for finding the max collatz sequence up to some numbe
                      (helper n 0))))
 
 (print (collatz-max 100000))
-{% endhighlight %}
+```
 
 It doesn't require any hacks or trampolines since TCO is now part of Marco. Much more readable than [before](http://juanibiapina.com/articles/2013-12-16-trampolining-in-marco/).
 

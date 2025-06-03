@@ -1,12 +1,10 @@
 ---
-layout: single
 title: "Trampolining in Marco"
 description: "Trying out some advanced programming concepts in Marco."
-category: articles
-tags: [programming languages, development, marco, collatz, hailstone, sequences, continuations, thunks]
+pubDate: 2013-12-16
 ---
 
-In this post I'll show how to "better" solve the collatz challenge from the [previous post](http://juanibiapina.com/articles/2013-12-13-the-collatz-conjecture/) by escaping the limitations of the Java stack.
+In this post I'll show how to "better" solve the collatz challenge from the [previous post](/2013-12-13-the-collatz-conjecture/) by escaping the limitations of the Java stack.
 
 This is in fact, not at all better, it's just much more complicated and helped me learn and think about some concepts I had never worked with.
 
@@ -14,7 +12,7 @@ This is in fact, not at all better, it's just much more complicated and helped m
 
 The first learning we get from the previous problem is that we don't actually need to generate and store the sequence of numbers. All we need is their sizes. We can then write a new function:
 
-{% highlight racket %}
+```racket
 (def collatz-size (function (n size)
                      (if (= n 1)
                          size
@@ -22,7 +20,7 @@ The first learning we get from the previous problem is that we don't actually ne
                                            (/ n 2)
                                            (+ (* 3 n) 1))
                                        (+ 1 size)))))
-{% endhighlight %}
+```
 
 The function now takes an `accumulator` called `size`. The accumulator will have an initial value of 1 and will be incremented for each recursive call. That way, the final call only needs to return the accumulator value, and the list is never stored.
 
@@ -38,7 +36,7 @@ In Continuation Passing Style (CPS), we'll have functions return the next piece 
 
 Let's rewrite `collatz-size` using our simplified CPS:
 
-{% highlight racket %}
+```racket
 (def collatz-size (function (n size)
                          (if (= n 1)
                              size
@@ -46,7 +44,7 @@ Let's rewrite `collatz-size` using our simplified CPS:
                                                             (/ n 2)
                                                             (+ (* 3 n) 1))
                                                         (+ 1 size))))))
-{% endhighlight %}
+```
 
 This new version returns the `size` when it finishes the calculation (the first part of the `if`). But when it knows it has to recurse, it instead creates a `continuation` (a function that takes no arguments) and returns it. That means this function will return a function that returns a function and eventually might return the result. How do we run this?
 
@@ -54,20 +52,20 @@ This new version returns the `size` when it finishes the calculation (the first 
 
 A `trampoline` is a function that we can use to get the result of the previous `collatz-size`. It will take a function, run it and check the results. It will keep doing this until the result is not a function:
 
-{% highlight racket %}
+```racket
 (def trampoline (function (f)
                    (do (
                      (var result f)
                      (while (function? result) (set! result (result)))
                      result
                    ))))
-{% endhighlight %}
+```
 
 So we can invoke like this:
 
-{% highlight racket %}
+```racket
 (print (trampoline (function () (collatz-size 6 1))))
-{% endhighlight %}
+```
 
 Note this is imperative style, which I don't fully support, but it translates the stack usage into a while loop. I find this incredibly creative.
 
@@ -75,7 +73,7 @@ Note this is imperative style, which I don't fully support, but it translates th
 
 Given that we have a `trampoline` function available, we can rewrite all of our recursive functions in terms of it. Here is the complete solution:
 
-{% highlight racket %}
+```racket
 (def trampoline (function (f)
                  (do (
                    (var result f)
@@ -131,7 +129,7 @@ Given that we have a `trampoline` function available, we can rewrite all of our 
 (def max-n 5000)
 
 (print (my-list-max (my-map collatz-size (my-range 1 max-n))))
-{% endhighlight %}
+```
 
 Note how even map and reverse need to be rewritten in this style.
 

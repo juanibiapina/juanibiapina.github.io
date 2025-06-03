@@ -1,9 +1,7 @@
 ---
-layout: single
 title: "Practical Development of Programming Languages"
 description: "A summary of the tools I use to develop Marco"
-category: articles
-tags: [programming languages, tools, development, marco]
+pubDate: 2013-12-06
 ---
 
 In this post I'll comment about the tools I'm using for developing Marco.

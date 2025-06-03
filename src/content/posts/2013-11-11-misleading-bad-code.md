@@ -1,9 +1,7 @@
 ---
-layout: single
 title: "Misleading Bad Code"
 description: "The subconscious burden of bad code."
-category: articles
-tags: [good code, single responsibility principle, subconscious, SRP, mental mapping, bad code]
+pubDate: 2013-11-11
 ---
 
 Bad code gives me anxiety. Sometimes I even get physically sick. Subtle bad code is even worse.
@@ -12,22 +10,22 @@ The subconscious mind sees and processes lots of things we don't realize. It com
 
 Let's look at very simple, unharming code. I have obfuscated the variables, but this is production code.
 
-{% highlight javascript %}
+```javascript
 var numberOfUsers = 1, userIsUgly, someController, redefineEverything, t = true, r = someParameter
-{% endhighlight %}
+```
 
 On the premise that less code is better, someone has compiled all variable definitions in one line. Why is this bad?
 
-Remember the Single Responsibility Principle. It's a principle. Don't argue it's applied to methods or classes. It's only a way to think about code, so let's use it.
+Let's apply the [Single Responsibility Principle](TODO). That means: How many reasons to change does this line have?
 
-This one line has at least six different reasons to change. When you need to spend a long time (seconds are a long time for the subconscious) reading one line with several responsibilities that might not even interest you at that moment, this process makes your subconscious go crazy. That alone might make you stand up from your computer and get a coffee.
+This one line has at least six different reasons to change. When you need to spend a long time (seconds are a long time for the subconscious) reading one line with several responsibilities that might not even interest you at that moment, this process makes your subconscious go crazy. That alone might make me stand up from your computer and get a coffee.
 
 Later one person refactored that code into this:
 
-{% highlight javascript %}
+```javascript
 var numberOfUsers = 1, userIsUgly, someController,
     redefineEverything, t = true, r = someParameter
-{% endhighlight %}
+```
 
 The line break. Since we're in 1986, the line break in the bad code was inserted to make the line easier to read. There is no other way to make it easier to read, right? So why not break the one conceptual line into two, and have the reader of the code make the effort to figure out these are in fact the same line?
 
@@ -37,39 +35,39 @@ Also, not everyone has screens of the same size, or even the same editors, or ev
 
 So why not this version?
 
-{% highlight javascript %}
+```javascript
 var numberOfUsers = 1,
     userIsUgly,
     someController,
     redefineEverything,
     t = true,
     r = someParameter
-{% endhighlight %}
+```
 
 All line breaks are now meaningful.
 
-You're saving 3 chars on each line. At what cost? The worst possible cost: Mental Mapping.
+You're saving 3 chars on each line. At what cost? Mental Mapping.
 
-You're making the reader of the code who is interested on the definition of someController look at line 3, then at line one (for the 'var' keyword), to see that this is a variable definition. When looking at line one there is the extra burden of removing the other var definition (numberOfUsers) from the current context (remember I'm talking about subconscious burdens).
+You're making the reader of the code who is interested on the definition of `someController` look at line 3, then at line one (for the 'var' keyword), to see that this is a variable definition. When looking at line one there is the extra burden of removing the other var definition (`numberOfUsers`) from the current context (remember I'm talking about subconscious burdens).
 
-Also in practice you can't search for 'var someController'.
+Also in practice you can't search for `var someController`.
 
 What about this?
 
-{% highlight javascript %}
+```javascript
 var numberOfUsers = 1
 var userIsUgly
 var someController
 var redefineEverything
 var t = true
 var r = someParameter
-{% endhighlight %}
+```
 
-To the subconscious mind, this version might be the most scary. After writing this, it's easy to see you should do something about it, and might eventually fall back to one of the above.
+To the subconscious mind, this version might be the most scary. After writing this, it's easy to see you should do something about it, and might eventually fall back to one of the above. But so far, it highlights the problem the best, and it's the easier to refactor.
 
 ![It's a tarp](https://i.chzbgr.com/maxW500/997281536/hC8F8D378/)
 
-This version has six different lines that do different things. They define variables that are used in different places. If you're looking for one, you'll find it in one line. You can safely ignore the other lines. No unnecessary 80's line breaks. Peachy? No.
+This version has six different lines that do different things. They define variables that are used in different places. If you're looking for one, you'll find it in one line. You can safely ignore the other lines. No unnecessary line breaks.
 
 Arguebly better than all others, but scary anyway. This version points you to several bigger issues. This method is probably doing too many things and it should be refactored. These variable definitions should probably be moved closer to their usages (and you didn't do it because the method is such a mess that you can't easily find them, true story). To the experienced programmer, this code is all probably going to be gone after refactoring. There is a lot of work to come.
 
