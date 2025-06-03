@@ -1,7 +1,5 @@
 import { getCollection } from 'astro:content';
 
-export const POSTS_PER_PAGE = 5;
-
 export interface Post {
   url: string;
   frontmatter: {
@@ -12,7 +10,7 @@ export interface Post {
   };
 }
 
-export async function getPaginatedPosts(page: number = 1) {
+export async function getAllPosts() {
   const posts = await getCollection('posts');
 
   const sortedPosts = posts
@@ -34,15 +32,5 @@ export async function getPaginatedPosts(page: number = 1) {
       };
     });
 
-  const resolvedPosts = await Promise.all(sortedPosts);
-  const totalPages = Math.ceil(resolvedPosts.length / POSTS_PER_PAGE);
-  const start = (page - 1) * POSTS_PER_PAGE;
-  const end = start + POSTS_PER_PAGE;
-  const currentPosts = resolvedPosts.slice(start, end);
-
-  return {
-    posts: currentPosts,
-    totalPages,
-    currentPage: page
-  };
+  return await Promise.all(sortedPosts);
 }
