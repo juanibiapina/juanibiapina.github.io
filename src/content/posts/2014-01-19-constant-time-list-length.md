@@ -58,7 +58,7 @@ How big is the difference?
 
 ## Results
 
-If we take the code [from this previous post with trampolines](/2013-12-16-trampolining-in-marco/) and replace the `my-length` function with our new optimized length (and also optimized closures), we get these new results:
+If we take the code [from this previous post with trampolines](/posts/2013-12-16-trampolining-in-marco/) and replace the `my-length` function with our new optimized length (and also optimized closures), we get these new results:
 
 Previous results with optimized closures:
 

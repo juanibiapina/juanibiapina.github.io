@@ -4,7 +4,7 @@ description: "Trying out some advanced programming concepts in Marco."
 pubDate: 2013-12-16
 ---
 
-In this post I'll show how to "better" solve the collatz challenge from the [previous post](/2013-12-13-the-collatz-conjecture/) by escaping the limitations of the Java stack.
+In this post I'll show how to "better" solve the collatz challenge from the [previous post](/posts/2013-12-13-the-collatz-conjecture/) by escaping the limitations of the Java stack.
 
 This is in fact, not at all better, it's just much more complicated and helped me learn and think about some concepts I had never worked with.
 

@@ -16,7 +16,7 @@ var numberOfUsers = 1, userIsUgly, someController, redefineEverything, t = true,
 
 On the premise that less code is better, someone has compiled all variable definitions in one line. Why is this bad?
 
-Let's apply the [Single Responsibility Principle](TODO). That means: How many reasons to change does this line have?
+Let's apply the [Single Responsibility Principle](/posts/2013-11-01-single-responsibility-principle/). That means: How many reasons to change does this line have?
 
 This one line has at least six different reasons to change. When you need to spend a long time (seconds are a long time for the subconscious) reading one line with several responsibilities that might not even interest you at that moment, this process makes your subconscious go crazy. That alone might make me stand up from your computer and get a coffee.
 

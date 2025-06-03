@@ -8,7 +8,7 @@ One of the main goals of the Marco language is that the interpreter code should 
 
 Even though the current state of the code requires lots of refactoring (since I tend to experiment a lot with it), I'm proud to say that I'm still walking towards that goal.
 
-I have recently added TCO to Marco, in a similar way to the previous [trampoline post](/2013-12-16-trampolining-in-marco/). Let me show you the two main consequences to code quality:
+I have recently added TCO to Marco, in a similar way to the previous [trampoline post](/posts/2013-12-16-trampolining-in-marco/). Let me show you the two main consequences to code quality:
 
 ## Interpreter Changes
 
@@ -70,7 +70,7 @@ This is the new Marco code for finding the max collatz sequence up to some numbe
 (print (collatz-max 100000))
 ```
 
-It doesn't require any hacks or trampolines since TCO is now part of Marco. Much more readable than [before](http://juanibiapina.com/articles/2013-12-16-trampolining-in-marco/).
+It doesn't require any hacks or trampolines since TCO is now part of Marco. Much more readable than [before](/posts/2013-12-16-trampolining-in-marco/).
 
 # Performance Comparison
 

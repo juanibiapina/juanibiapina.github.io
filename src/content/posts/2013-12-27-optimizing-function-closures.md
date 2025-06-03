@@ -36,7 +36,7 @@ So what is currently on that environment?
 
 Obviously, `+` and `y` have to be, because they are used in the body. With a bit of cleverness that I might eventually talk about, `f` also is (to allow recursion with anonymous functions). What about `z`?
 
-I wrote in [this other post](/2013-11-29-functions-in-marco/) that `z` would be available. I have changed this now, and things declared after the declaration of the function are not available, by definition. With that I might have killed mutual recursion for now. I'll figure that out later.
+I wrote in [this other post](/posts/2013-11-29-functions-in-marco/) that `z` would be available. I have changed this now, and things declared after the declaration of the function are not available, by definition. With that I might have killed mutual recursion for now. I'll figure that out later.
 
 The interesting question here is: What about `-`? What about `*`, `def`, `set!` etc?
 
@@ -78,7 +78,7 @@ The "better" approach would be to peek into the body of the function, find the `
 
 ## Results
 
-Running the same tests as the [previous post](/2013-12-16-trampolining-in-marco/):
+Running the same tests as the [previous post](/posts/2013-12-16-trampolining-in-marco/):
 
 Previous:
 

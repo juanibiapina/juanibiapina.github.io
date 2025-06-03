@@ -6,7 +6,7 @@ pubDate: 2014-11-05
 
 ### The problem
 
-On my [previous post about Basher](/2014-08-20-basher-a-package-manager-for-shell-scripts/) I mentioned that one of its goals was to be able to install scripts directly from github with minimal manual intervention. During the last month, I had to make some changes to get closer to that goal.
+On my [previous post about Basher](/posts/2014-08-20-basher-a-package-manager-for-shell-scripts/) I mentioned that one of its goals was to be able to install scripts directly from github with minimal manual intervention. During the last month, I had to make some changes to get closer to that goal.
 
 The `package.sh` file contains package information like binaries, completions, dependencies etc. The problem with having a package descriptor is that I need to fork every repo I want to install and add the file (maybe pull request a change for the maintainer to add the file). There is nothing wrong with this apprach, and it is in fact what [bpkg](https://github.com/bpkg/bpkg) does. This is partly what allows them to have custom install scripts per package.
 
