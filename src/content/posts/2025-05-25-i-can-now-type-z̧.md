@@ -11,3 +11,5 @@ A dead key means that the `¸` can be combined with other keys to generate combi
 You may ask: when would I ever need to type a combination like `¸` or `ḩ`?
 
 Well, here it is, a blog post that needed it.
+
+Also, my girlfriend is from Galați.
