@@ -4,7 +4,7 @@ description: "So I can type many languages without switching layouts and both Ni
 pubDate: 2025-06-04
 ---
 
-I previously discovered [I can now type `ţ` on macOS](/posts/2025-05-25-i-can-now-type-z̧.md), but
+I previously discovered [I can now type `ţ` on macOS](/posts/2025-05-25-i-can-now-type-z̧/), but
 now I want to have my Linux layout match macOS ABC Extended so I can type with the same dead keys on both systems.
 
 I already use the `xkb_variant mac`. It matches some of the dead keys like `e`, `i`, `n` and `u` which are great for Portuguese (é, â) and German (ü, ß):
