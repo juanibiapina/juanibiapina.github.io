@@ -97,4 +97,4 @@ The final (and eventually probably updated) version can be found in [my dotfiles
 
 - How to define new xkb layouts: https://www.x.org/releases/current/doc/xorg-docs/input/XKB-Enhancing.html#Defining_New_Layouts
 - Source code for `us(mac)` xkb_variant: https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/blob/master/symbols/us#L730
-- extra_layout options in NixOS: https://search.nixos.org/options?channel=unstable&show=services.xserver.xkb.extraLayouts
+- Custom XKB layouts in NixOS Manual: https://nixos.org/manual/nixos/stable/#custom-xkb-layouts
