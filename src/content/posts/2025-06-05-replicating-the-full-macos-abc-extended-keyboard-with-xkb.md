@@ -4,7 +4,7 @@ description: "With the help of AI, of course."
 pubDate: 2025-06-05
 ---
 
-In the [previous post](/posts/2025-06-04-mac-abc-extended-on-nixos) I created fix for some of the missing dead keys in the `us(mac)` layout I use on NixOS
+In the [previous post](/posts/2025-06-04-mac-abc-extended-on-nixos) I created a fix for some of the missing dead keys in the `us(mac)` layout I use on NixOS
 
 Today I thought, why not simply replicate the entire layout?
 

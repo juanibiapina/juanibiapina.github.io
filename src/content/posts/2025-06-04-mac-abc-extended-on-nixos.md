@@ -1,6 +1,6 @@
 ---
 title: "Mac ABC Extended layout on NixOS"
-description: "So I can type many languages without switching layouts and both NixOS and macOS"
+description: "So I can type many languages without switching layouts in both NixOS and macOS"
 pubDate: 2025-06-04
 ---
 
