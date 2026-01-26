@@ -12,7 +12,7 @@
     "@astrojs/rss": "^4.0.15",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.16.11",
+    "astro": "^5.16.15",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
     "tailwindcss": "^4.1.18"
