@@ -3,14 +3,17 @@ import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@/utils/slugify";
 import { getPath } from "@/utils/getPath";
 import Datetime from "./Datetime.astro";
+import { getReadingTime } from "@/utils/getReadingTime";
 
 type Props = {
   variant?: "h2" | "h3";
 } & CollectionEntry<"blog">;
 
-const { variant: Heading = "h2", id, data, filePath } = Astro.props;
+const { variant: Heading = "h2", id, body, data, filePath } = Astro.props;
 
 const { title, description, ...props } = data;
+
+const readingTime = body ? getReadingTime(body) : undefined;
 ---
 
 <li class="my-6">
@@ -26,6 +29,6 @@ const { title, description, ...props } = data;
       {title}
     </Heading>
   </a>
-  <Datetime {...props} />
+  <Datetime {...props} {readingTime} />
   <p>{description}</p>
 </li>

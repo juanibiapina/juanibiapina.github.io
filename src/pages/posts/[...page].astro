@@ -1,32 +1,93 @@
 ---
-import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
-import Main from "@/layouts/Main.astro";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
 import Card from "@/components/Card.astro";
-import Pagination from "@/components/Pagination.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { SITE } from "@/config";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 
-export const getStaticPaths = (async ({ paginate }) => {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return paginate(getSortedPosts(posts), { pageSize: SITE.postPerPage });
-}) satisfies GetStaticPaths;
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
-const { page } = Astro.props;
+export async function getStaticPaths() {
+  return [{ params: { page: undefined } }];
+}
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+const sortedPosts = getSortedPosts(posts);
+
+// Group posts by year, then by month within each year
+type GroupedPosts = {
+  year: number;
+  count: number;
+  months: {
+    month: string;
+    count: number;
+    posts: typeof sortedPosts;
+  }[];
+}[];
+
+const grouped: GroupedPosts = [];
+let currentYear: (typeof grouped)[0] | null = null;
+let currentMonth: (typeof grouped)[0]["months"][0] | null = null;
+
+for (const post of sortedPosts) {
+  const dt = dayjs(post.data.pubDatetime).tz(SITE.timezone);
+  const year = dt.year();
+  const month = dt.format("MMMM"); // e.g., "March"
+
+  if (!currentYear || currentYear.year !== year) {
+    currentYear = { year, count: 0, months: [] };
+    grouped.push(currentYear);
+    currentMonth = null;
+  }
+
+  if (!currentMonth || currentMonth.month !== month) {
+    currentMonth = { month, count: 0, posts: [] };
+    currentYear.months.push(currentMonth);
+  }
+
+  currentMonth.posts.push(post);
+  currentMonth.count++;
+  currentYear.count++;
+}
 ---
 
 <Layout title={`Posts | ${SITE.title}`}>
   <Header />
-  <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
-    </ul>
-  </Main>
+  <Breadcrumb />
+  <main id="main-content" class="app-layout pb-12">
+    <h1 class="text-2xl font-semibold sm:text-3xl">Posts</h1>
+    <p class="mt-2 mb-6 italic">All the articles I've posted.</p>
 
-  <Pagination {page} />
-
-  <Footer noMarginTop={page.lastPage > 1} />
+    {
+      grouped.map(yearGroup => (
+        <section class="mt-8">
+          <h2 class="text-xl font-semibold">
+            {yearGroup.year}
+            <sup class="text-sm opacity-70">^{yearGroup.count}</sup>
+          </h2>
+          {yearGroup.months.map(monthGroup => (
+            <div class="mt-4">
+              <h3 class="text-base font-medium opacity-80">
+                {monthGroup.month}
+                <sup class="text-xs opacity-70">^{monthGroup.count}</sup>
+              </h3>
+              <ul>
+                {monthGroup.posts.map(data => (
+                  <Card {...data} />
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+      ))
+    }
+  </main>
+  <Footer />
 </Layout>

@@ -10,51 +10,88 @@ import getSortedPosts from "@/utils/getSortedPosts";
 import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
-import { SOCIALS } from "@/constants";
 
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.title,
+    url: SITE.website,
+    description: SITE.desc,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: SITE.author,
+    url: SITE.profile,
+    sameAs: [
+      "https://github.com/juanibiapina",
+      "https://x.com/IbiapinaJuan",
+      "https://www.linkedin.com/in/juan-i-10025313/",
+    ],
+  },
+];
 ---
 
 <Layout>
+  <Fragment slot="head">
+    {
+      structuredData.map(data => (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify(data)}
+        />
+      ))
+    }
+  </Fragment>
   <Header />
   <main id="main-content" data-layout="index" class="app-layout">
     <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Hi, I'm Juan
-      </h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
+      <div class="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
+        <img
+          src="https://github.com/juanibiapina.png"
+          alt="Juan Ibiapina"
+          class="size-28 flex-shrink-0 rounded-full"
+          width="112"
+          height="112"
         />
-        <span class="sr-only">RSS Feed</span>
-      </a>
-
-      <p>
-        Software engineer, language enthusiast, and open source contributor.
-        I write about programming languages, tools, and whatever else catches
-        my attention.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
+        <div>
+          <div class="my-2 flex items-center gap-2 sm:my-0">
+            <h1 class="inline-block text-4xl font-bold sm:text-5xl">
+              Hi, I'm Juan
+            </h1>
+            <a
+              target="_blank"
+              href="/rss.xml"
+              class="inline-block"
+              aria-label="rss feed"
+              title="RSS Feed"
+            >
+              <IconRss
+                width={20}
+                height={20}
+                class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
+              />
+              <span class="sr-only">RSS Feed</span>
+            </a>
+          </div>
+          <p class="mt-3">
+            Software engineer, language enthusiast, and open source contributor.
+            I write about programming languages, tools, and whatever else
+            catches my attention.
+          </p>
+          <div class="mt-3">
             <Socials />
           </div>
-        )
-      }
+        </div>
+      </div>
     </section>
 
     {
@@ -79,7 +116,6 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
           <ul>
             {recentPosts.map(
               (data, index) =>

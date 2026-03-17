@@ -6,10 +6,10 @@ export const SITE = {
   title: "Juan Ibiapina",
   ogImage: "og.png",
   lightAndDarkMode: true,
-  postPerIndex: 4,
-  postPerPage: 4,
+  postPerIndex: 10,
+  postPerPage: 10,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
-  showArchives: true,
+  showArchives: false,
   showBackButton: true,
   editPost: {
     enabled: false,

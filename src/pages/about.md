@@ -3,14 +3,14 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-<div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; margin-bottom: 2rem;">
+<div class="mb-8 flex flex-wrap items-start gap-6">
   <img
     src="https://github.com/juanibiapina.png"
     alt="Juan Ibiapina"
-    style="width: 160px; height: 160px; border-radius: 50%; flex-shrink: 0;"
+    class="size-40 flex-shrink-0 rounded-full"
   />
-  <div style="flex: 1; min-width: 200px;">
-    <p style="margin-top: 0;">
+  <div class="min-w-[200px] flex-1">
+    <p class="mt-0">
       Hey, I'm <strong>Juan Ibiapina</strong>. I'm a software engineer who cares about writing clear, simple code and building tools that make developers' lives easier.
     </p>
     <p>
@@ -35,7 +35,7 @@ You can see what I've been up to on my [GitHub profile](https://github.com/juani
   <img
     src="https://ghchart.rshah.org/juanibiapina"
     alt="Juan Ibiapina's GitHub contribution chart"
-    style="width: 100%; max-width: 720px;"
+    class="w-full max-w-[720px]"
   />
 </a>
 

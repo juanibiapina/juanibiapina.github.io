@@ -11,6 +11,7 @@ import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
 import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
+import { getReadingTime, getWordCount } from "@/utils/getReadingTime";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
@@ -36,6 +37,9 @@ const {
 } = post.data;
 
 const { Content } = await render(post);
+
+const readingTime = post.body ? getReadingTime(post.body) : undefined;
+const wordCount = post.body ? getWordCount(post.body) : undefined;
 
 let ogImageUrl: string | undefined;
 
@@ -65,6 +69,8 @@ const layoutProps = {
   canonicalURL,
   ogImage,
   scrollSmooth: true,
+  wordCount,
+  readingTime,
 };
 
 /* ========== Prev/Next Posts ========== */
@@ -80,6 +86,9 @@ const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
 const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost =
   currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
+
+const prevPostHref = prevPost ? getPath(prevPost.id, prevPost.filePath) : null;
+const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
 ---
 
 <Layout {...layoutProps}>
@@ -89,6 +98,8 @@ const nextPost =
     id="main-content"
     class:list={["app-layout pb-12", { "mt-8": !SITE.showBackButton }]}
     data-pagefind-body
+    data-prev-post={prevPostHref}
+    data-next-post={nextPostHref}
   >
     <h1
       transition:name={slugifyStr(title)}
@@ -97,7 +108,7 @@ const nextPost =
       {title}
     </h1>
     <div class="my-2 flex items-center gap-2">
-      <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
+      <Datetime {pubDatetime} {modDatetime} {timezone} {readingTime} size="lg" />
       <span
         aria-hidden="true"
         class:list={[
@@ -133,7 +144,7 @@ const nextPost =
       {
         prevPost && (
           <a
-            href={getPath(prevPost.id, prevPost.filePath)}
+            href={prevPostHref}
             class="flex w-full gap-1 hover:opacity-75"
           >
             <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
@@ -147,7 +158,7 @@ const nextPost =
       {
         nextPost && (
           <a
-            href={getPath(nextPost.id, nextPost.filePath)}
+            href={nextPostHref}
             class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
           >
             <div>
@@ -277,6 +288,31 @@ const nextPost =
     }
   }
   attachCopyButtons();
+
+  /** Navigate between posts with j/k keys */
+  function setupKeyboardNav() {
+    document.addEventListener("keydown", function (e) {
+      // Don't trigger when typing in inputs/textareas
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      ) {
+        return;
+      }
+
+      const mainContent = document.getElementById("main-content");
+      if (!mainContent) return;
+
+      if (e.key === "j") {
+        const nextPost = mainContent.dataset.nextPost;
+        if (nextPost) window.location.href = nextPost;
+      } else if (e.key === "k") {
+        const prevPost = mainContent.dataset.prevPost;
+        if (prevPost) window.location.href = prevPost;
+      }
+    });
+  }
+  setupKeyboardNav();
 
   /* Go to page start after page swap */
   document.addEventListener("astro:after-swap", () =>
