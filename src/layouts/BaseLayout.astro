@@ -1,7 +1,13 @@
 ---
 import Header from '../components/Header.astro';
 import '../styles/global.css';
-const { pageTitle } = Astro.props;
+const {
+  pageTitle,
+  description = "Juan Ibiapina's personal site and blog",
+  type = "website",
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("/og-image.png", Astro.site);
 ---
 
 <html lang="en">
@@ -11,6 +17,15 @@ const { pageTitle } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Juan Ibiapina - {pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
     <link rel="alternate" type="application/rss+xml" title="Juan Ibiapina's Blog" href="/rss.xml" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   </head>
