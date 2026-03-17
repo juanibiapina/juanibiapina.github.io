@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 export interface Post {
   url: string;
@@ -20,9 +20,9 @@ export async function getAllPosts() {
       return dateB.getTime() - dateA.getTime();
     })
     .map(async post => {
-      const { remarkPluginFrontmatter } = await post.render();
+      const { remarkPluginFrontmatter } = await render(post);
       return {
-        url: `/posts/${post.slug}/`,
+        url: `/posts/${post.id}/`,
         frontmatter: {
           title: post.data.title,
           description: post.data.description,
