@@ -3,7 +3,9 @@ title: "Misleading Bad Code"
 description: "The subconscious burden of bad code."
 pubDatetime: 2013-11-11T00:00:00Z
 tags:
-  - blog
+  - software-design
+  - refactoring
+  - code-readability
 ---
 
 Bad code gives me anxiety. Sometimes I even get physically sick. Subtle bad code is even worse.

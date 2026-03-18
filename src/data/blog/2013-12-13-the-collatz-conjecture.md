@@ -3,7 +3,9 @@ title: "The Collatz Conjecture"
 description: "Using Marco to solve programming challenges."
 pubDatetime: 2013-12-13T00:00:00Z
 tags:
-  - blog
+  - marco
+  - algorithms
+  - recursion
 ---
 
 In this post I'll try to solve the Collatz challenge using Marco.

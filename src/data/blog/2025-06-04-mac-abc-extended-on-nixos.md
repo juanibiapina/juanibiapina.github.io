@@ -3,7 +3,12 @@ title: "Mac ABC Extended layout on NixOS"
 description: "So I can type many languages without switching layouts in both NixOS and macOS"
 pubDatetime: 2025-06-04T00:00:00Z
 tags:
-  - blog
+  - keyboard
+  - nixos
+  - linux
+  - macos
+  - xkb
+  - unicode
 ---
 
 I previously discovered [I can now type `ţ` on macOS](/posts/2025-05-25-i-can-now-type-z̧/), but

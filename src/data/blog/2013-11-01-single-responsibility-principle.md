@@ -3,7 +3,10 @@ title: "Single Responsibility Principle"
 description: "A quick reminder of what is the SRP and writing good code"
 pubDatetime: 2013-11-01T00:00:00Z
 tags:
-  - blog
+  - software-design
+  - ruby
+  - refactoring
+  - code-readability
 ---
 
 A quick [google search for single responsibility principle](https://www.google.com/search?q=single+responsibility+principle&oq=single+resposibility) for me returns these top 5 results, all of which contain this saying in one way or another:

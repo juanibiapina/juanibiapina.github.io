@@ -3,7 +3,9 @@ title: "I can now type z̧"
 description: "Why would I want to type that?"
 pubDatetime: 2025-05-25T00:00:00Z
 tags:
-  - blog
+  - keyboard
+  - macos
+  - unicode
 ---
 I upgraded my MacBook (named `macm1`) to MacOS Whatever and it seems like the way you input [cedilla](https://www.wordnik.com/words/cedilla) in the ABC Extended keyboard has changed.
 

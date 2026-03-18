@@ -3,7 +3,9 @@ title: "Optimizing Function Closures"
 description: "Optimizing closure environments to contain only what is really needed."
 pubDatetime: 2013-12-27T00:00:00Z
 tags:
-  - blog
+  - marco
+  - optimization
+  - language-design
 ---
 
 In this post I want to talk about optimizations for function closures.

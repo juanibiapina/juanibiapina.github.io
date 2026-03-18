@@ -3,7 +3,10 @@ title: "Testing SML"
 description: "My setup for testing SML code"
 pubDatetime: 2013-10-13T00:00:00Z
 tags:
-  - blog
+  - testing
+  - functional-programming
+  - tooling
+  - shell
 ---
 
 I'm currently taking a course on Programming Languages, by Dan Grossman, which you can find for free [here](https://class.coursera.org/proglang-002/class).

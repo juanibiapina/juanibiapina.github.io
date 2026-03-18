@@ -3,7 +3,9 @@ title: "Evaluation Rules of Marco"
 description: "Complete description of evaluation rules in Marco"
 pubDatetime: 2013-12-02T00:00:00Z
 tags:
-  - blog
+  - marco
+  - language-design
+  - functional-programming
 ---
 
 Marco's evaluation rules are a simplified form of Racket's. I'll summarize them here.

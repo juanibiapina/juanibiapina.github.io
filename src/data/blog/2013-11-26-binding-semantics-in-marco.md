@@ -3,7 +3,9 @@ title: "Binding Semantics in Marco"
 description: "Motivation and description of Marco's binding semantics."
 pubDatetime: 2013-11-26T00:00:00Z
 tags:
-  - blog
+  - marco
+  - language-design
+  - functional-programming
 ---
 
 In this post I will describe the binding semantics of Marco, the language I am developing which you can find [here](https://github.com/juanibiapina/marco).

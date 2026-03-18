@@ -3,7 +3,9 @@ title: "Constant Time List Length"
 description: "Optimizing the list length function in Marco."
 pubDatetime: 2014-01-19T00:00:00Z
 tags:
-  - blog
+  - marco
+  - optimization
+  - language-design
 ---
 
 ## The current length

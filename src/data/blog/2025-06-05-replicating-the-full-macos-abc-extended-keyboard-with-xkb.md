@@ -3,7 +3,12 @@ title: "Replicating the full macOS ABC Extended Keyboard with XKB"
 description: "With the help of AI, of course."
 pubDatetime: 2025-06-05T00:00:00Z
 tags:
-  - blog
+  - keyboard
+  - nixos
+  - linux
+  - macos
+  - xkb
+  - unicode
 ---
 
 In the [previous post](/posts/2025-06-04-mac-abc-extended-on-nixos) I created a fix for some of the missing dead keys in the `us(mac)` layout I use on NixOS

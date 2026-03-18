@@ -3,7 +3,9 @@ title: "Installing shell scripts from Github with Basher"
 description: "How to install bash packages by running a one liner."
 pubDatetime: 2014-11-05T00:00:00Z
 tags:
-  - blog
+  - basher
+  - shell
+  - open-source
 ---
 
 ### The problem

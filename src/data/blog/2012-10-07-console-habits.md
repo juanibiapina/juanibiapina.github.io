@@ -3,7 +3,8 @@ title: "Command line habits"
 description: "How to check your terminal habits and discover how to be more efficient on the command line."
 pubDatetime: 2012-10-07T00:00:00Z
 tags:
-  - blog
+  - shell
+  - tooling
 ---
 
 Some time ago, my friend Duck wrote a very small shell script to check our command line habits.

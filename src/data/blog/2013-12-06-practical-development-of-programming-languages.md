@@ -3,7 +3,10 @@ title: "Practical Development of Programming Languages"
 description: "A summary of the tools I use to develop Marco"
 pubDatetime: 2013-12-06T00:00:00Z
 tags:
-  - blog
+  - marco
+  - tooling
+  - testing
+  - language-design
 ---
 
 In this post I'll comment about the tools I'm using for developing Marco.

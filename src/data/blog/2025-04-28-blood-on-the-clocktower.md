@@ -3,7 +3,7 @@ title: "Blood on the Clocktower, software development and making life decisions"
 description: "What's a framework for decisions making in life?"
 pubDatetime: 2025-04-28T00:00:00Z
 tags:
-  - blog
+  - software-design
 ---
 
 I played a game the other day called [Blood on the Clocktower](https://bloodontheclocktower.com/).

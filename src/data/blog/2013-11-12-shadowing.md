@@ -3,7 +3,10 @@ title: "Shadowing"
 description: "Shadowing in Ruby and obscure language features"
 pubDatetime: 2013-11-12T00:00:00Z
 tags:
-  - blog
+  - software-design
+  - ruby
+  - language-design
+  - code-readability
 ---
 
 In Ruby you can do this:

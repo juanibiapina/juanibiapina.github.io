@@ -3,7 +3,10 @@ title: "Trampolining in Marco"
 description: "Trying out some advanced programming concepts in Marco."
 pubDatetime: 2013-12-16T00:00:00Z
 tags:
-  - blog
+  - marco
+  - optimization
+  - recursion
+  - functional-programming
 ---
 
 In this post I'll show how to "better" solve the collatz challenge from the [previous post](/posts/2013-12-13-the-collatz-conjecture/) by escaping the limitations of the Java stack.

@@ -3,7 +3,9 @@ title: "Functions in Marco"
 description: "Basic semantics of functions in Marco"
 pubDatetime: 2013-11-29T00:00:00Z
 tags:
-  - blog
+  - marco
+  - language-design
+  - functional-programming
 ---
 
 In this post I'll describe the basics of functions in Marco. They behave mostly like Racket functions, except without any syntactic sugar or variadic functions for now.

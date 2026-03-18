@@ -3,7 +3,9 @@ title: "Marco Revamp"
 description: "Eliminating Semantic Ambiguities in Marco."
 pubDatetime: 2014-05-19T00:00:00Z
 tags:
-  - blog
+  - marco
+  - language-design
+  - functional-programming
 ---
 
 Ever since Marco's fourth rewrite (when things finally started to get serious), it has been heavily inspired by Lisp. One of my initial goals was to have a macro system similar to Clojure's.

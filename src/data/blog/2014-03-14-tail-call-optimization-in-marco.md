@@ -3,7 +3,9 @@ title: "Tail Call Optimization in Marco"
 description: "Tail calls in Marco and code readability."
 pubDatetime: 2014-03-14T00:00:00Z
 tags:
-  - blog
+  - marco
+  - optimization
+  - recursion
 ---
 
 One of the main goals of the Marco language is that the interpreter code should be very easy to understand. It should be possible for almost any programmer without experience developing programming languages to read the code and understand what's going on at a high level.

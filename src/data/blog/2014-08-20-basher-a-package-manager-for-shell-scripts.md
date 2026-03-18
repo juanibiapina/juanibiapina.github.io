@@ -3,7 +3,9 @@ title: "A Package Manager For Shell Scripts"
 description: "Introducing basher."
 pubDatetime: 2014-08-20T00:00:00Z
 tags:
-  - blog
+  - basher
+  - shell
+  - open-source
 ---
 
 In this post I'll introduce [basher](https://github.com/basherpm/basher), a package manager for shell scripts.

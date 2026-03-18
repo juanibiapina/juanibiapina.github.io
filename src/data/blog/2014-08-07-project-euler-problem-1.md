@@ -3,7 +3,9 @@ title: "Project Euler - Problem 1"
 description: "Solving the first problem in Project Euler using Marco"
 pubDatetime: 2014-08-07T00:00:00Z
 tags:
-  - blog
+  - marco
+  - algorithms
+  - functional-programming
 ---
 
 In this post I'll show how to solve the first problem on Project Euler using Marco, while at the same time introducing some new features of the language.
