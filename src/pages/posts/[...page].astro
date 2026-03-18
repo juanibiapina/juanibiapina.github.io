@@ -61,7 +61,7 @@ for (const post of sortedPosts) {
 <Layout title={`Posts | ${SITE.title}`}>
   <Header />
   <Breadcrumb />
-  <main id="main-content" class="app-layout pb-12">
+  <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12">
     <h1 class="text-2xl font-semibold sm:text-3xl">Posts</h1>
     <p class="mt-2 mb-6 italic">All the articles I've posted.</p>
 
@@ -70,13 +70,11 @@ for (const post of sortedPosts) {
         <section class="mt-8">
           <h2 class="text-xl font-semibold">
             {yearGroup.year}
-            <sup class="text-sm opacity-70">^{yearGroup.count}</sup>
           </h2>
           {yearGroup.months.map(monthGroup => (
             <div class="mt-4">
               <h3 class="text-base font-medium opacity-80">
                 {monthGroup.month}
-                <sup class="text-xs opacity-70">^{monthGroup.count}</sup>
               </h3>
               <ul>
                 {monthGroup.posts.map(data => (
