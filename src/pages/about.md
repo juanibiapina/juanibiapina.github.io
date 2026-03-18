@@ -11,21 +11,19 @@ title: "About"
   />
   <div class="min-w-[200px] flex-1">
     <p class="mt-0">
-      Hey, I'm <strong>Juan Ibiapina</strong>. I'm a software engineer who cares about writing clear, simple code and building tools that make developers' lives easier.
+      Hey, I'm <strong>Juan</strong>. I'm a software engineer from Brazil, based in Germany. I love the command line and terminals. I put my energy into way too many things, but lately it's been figuring out how to do agentic coding while still using proven software practices.
     </p>
     <p>
-      I'm originally from Brazil and currently based in Germany. I've worked across the stack over the years, but I'm especially drawn to programming languages, developer tooling, and the command line.
+      Away from the screen, I boulder and climb.
     </p>
   </div>
 </div>
 
 ## What I work on
 
-I spend a lot of my time thinking about how to reduce complexity in software. I like building small, focused tools and contributing to open source. Some things I've built or contributed to:
+I spend most of my time inside [**pi**](https://pi.dev), a coding agent that's like the neovim of coding agents: extensible, keyboard-driven, yours to customize. I use it for everything and write extensions and skills to make it fit my workflow.
 
-- [**basher**](https://github.com/basherpm/basher) - A package manager for shell scripts
-- [**Marco**](https://github.com/juanibiapina/marco) - A programming language I built to learn about language design
-- Various CLI tools and dotfiles that keep my workflow smooth
+I also maintain a collection of CLI tools and [dotfiles](https://github.com/juanibiapina/dotfiles) that tie it all together.
 
 ## GitHub
 

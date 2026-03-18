@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://juanibiapina.dev/",
   author: "Juan Ibiapina",
   profile: "https://github.com/juanibiapina",
-  desc: "Blog by Juan Ibiapina - software engineer, language enthusiast, and open source contributor.",
+  desc: "Juan Ibiapina's blog on agentic coding, developer tooling, and the things that catch his attention.",
   title: "Juan Ibiapina",
   ogImage: "og.png",
   lightAndDarkMode: true,
