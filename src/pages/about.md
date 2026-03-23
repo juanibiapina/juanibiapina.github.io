@@ -21,7 +21,7 @@ title: "About"
 
 ## What I work on
 
-I spend most of my time inside [**pi**](https://pi.dev), a coding agent that's like the neovim of coding agents: extensible, keyboard-driven, yours to customize. I use it for everything and write extensions and skills to make it fit my workflow.
+I spend most of my time inside [**pi**](https://pi.dev), a coding agent that's like the neovim of coding agents: extensible, keyboard-driven, yours to customize. I use it for everything and write [extensions](https://pi.dev/packages) and skills to make it fit my workflow.
 
 I also maintain a collection of CLI tools and [dotfiles](https://github.com/juanibiapina/dotfiles) that tie it all together.
 
