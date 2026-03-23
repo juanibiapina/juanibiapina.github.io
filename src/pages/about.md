@@ -32,9 +32,7 @@ I also maintain a collection of CLI tools and [dotfiles](https://github.com/juan
 - [**sub**](https://github.com/juanibiapina/sub) - Shell scripts with superpowers. Organize commands into namespaced CLIs with completions and help.
 - [**mcpli**](https://github.com/juanibiapina/mcpli) - A CLI for interacting with MCP (Model Context Protocol) servers.
 
-## GitHub
-
-You can see what I've been up to on my [GitHub profile](https://github.com/juanibiapina).
+You can find more on my [GitHub profile](https://github.com/juanibiapina).
 
 <a href="https://github.com/juanibiapina">
   <img
