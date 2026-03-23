@@ -25,6 +25,13 @@ I spend most of my time inside [**pi**](https://pi.dev), a coding agent that's l
 
 I also maintain a collection of CLI tools and [dotfiles](https://github.com/juanibiapina/dotfiles) that tie it all together.
 
+## Projects
+
+- [**basher**](https://github.com/basherpm/basher) - A package manager for shell scripts. Install packages from GitHub with a single command.
+- [**gob**](https://github.com/juanibiapina/gob) - Process manager for AI agents (and humans). Run background jobs, await results, stream logs.
+- [**sub**](https://github.com/juanibiapina/sub) - Shell scripts with superpowers. Organize commands into namespaced CLIs with completions and help.
+- [**mcpli**](https://github.com/juanibiapina/mcpli) - A CLI for interacting with MCP (Model Context Protocol) servers.
+
 ## GitHub
 
 You can see what I've been up to on my [GitHub profile](https://github.com/juanibiapina).
