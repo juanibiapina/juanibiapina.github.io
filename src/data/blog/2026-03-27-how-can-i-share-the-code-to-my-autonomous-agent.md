@@ -18,4 +18,4 @@ The code for my agent has hard-coded stuff. It's very specific to how I do thing
 
 A big part of this is that [software is now customizable per person](https://medium.com/@eren.m.nevin/personalized-software-when-ai-turns-users-into-co-developers-d76cc60d6a04). The reason there are so many different agent frameworks is that everybody can build their own and they're slightly different. It's [easier to build your own](https://www.reddit.com/r/AI_Agents/comments/1msm2mw/id_rather_build_my_own_ai_tools_than_pay_for/) than to customize someone else's. It's easier to build your own from scratch than to take a [generic framework](https://rmeerasahib.substack.com/p/personalized-software-is-coming-the) and use it.
 
-That said, the [pi coding agent](https://pi.dev) is amazing. It's the best base for any coding agent that I've seen so far.
+That said, the [pi coding agent](https://pi.dev) is amazing. Pi is the vim of coding agents.
