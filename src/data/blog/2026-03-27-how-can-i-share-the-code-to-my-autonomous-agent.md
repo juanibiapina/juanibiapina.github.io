@@ -2,7 +2,6 @@
 title: "How can I share the code to my autonomous agent?"
 description: "It's all just prompts."
 pubDatetime: 2026-03-27T00:00:00Z
-draft: true
 tags:
   - ai
   - agents
