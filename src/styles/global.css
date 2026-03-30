@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap");
 @import "tailwindcss";
 @import "./typography.css";
 
@@ -5,26 +6,38 @@
 
 :root,
 html[data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --muted: #e6e6e6;
-  --border: #ece9e9;
+  --background: #ecedf3;
+  --foreground: #3a3a52;
+  --foreground-bright: #18182a;
+  --accent: #cc1166;
+  --link: #00717f;
+  --muted: #e0e1ea;
+  --border: #c5c6d4;
+  --border-hover: #a6a7b8;
+  --selection-bg: rgba(204, 17, 102, 0.15);
+  --glow-link: transparent;
 }
 
 html[data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --muted: #343f60bf;
-  --border: #ab4b08;
+  --background: #14102a;
+  --foreground: #c8c8d0;
+  --foreground-bright: #e0e0e8;
+  --accent: #ff2d7b;
+  --link: #00f0ff;
+  --muted: #1e1835bf;
+  --border: #2a2240;
+  --border-hover: #3a3455;
+  --selection-bg: rgba(0, 240, 255, 0.2);
+  --glow-link: rgba(0, 240, 255, 0.3);
 }
 
 @theme {
   --color-*: initial;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-foreground-bright: var(--foreground-bright);
   --color-accent: var(--accent);
+  --color-link: var(--link);
   --color-muted: var(--muted);
   --color-border: var(--border);
 }
@@ -72,7 +85,19 @@ html[data-theme="dark"] {
     @apply overflow-y-scroll scroll-smooth;
   }
   body {
-    @apply flex min-h-svh flex-col bg-background font-mono text-foreground selection:bg-accent/75 selection:text-background;
+    @apply flex min-h-svh flex-col bg-background text-foreground;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  ::selection {
+    background: var(--selection-bg);
+  }
+  a {
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+  a:hover {
+    text-shadow: 0 0 8px var(--glow-link);
   }
   a,
   button {
@@ -85,5 +110,5 @@ html[data-theme="dark"] {
 }
 
 .active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-4;
+  @apply text-accent;
 }
