@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap");
+@import "tailwindcss";
 @import "./typography.css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -7,7 +7,8 @@
 :root,
 html[data-theme="light"] {
   --background: #eae8f2;
-  --foreground: #18182a;
+  --foreground: #3a3a52;
+  --foreground-bright: #18182a;
   --accent: #cc1166;
   --link: #00717f;
   --muted: #dddbe9;
@@ -16,7 +17,8 @@ html[data-theme="light"] {
 
 html[data-theme="dark"] {
   --background: #14102a;
-  --foreground: #e0e0e8;
+  --foreground: #c8c8d0;
+  --foreground-bright: #e0e0e8;
   --accent: #ff2d7b;
   --link: #00f0ff;
   --muted: #1e1835bf;
@@ -27,6 +29,7 @@ html[data-theme="dark"] {
   --color-*: initial;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-foreground-bright: var(--foreground-bright);
   --color-accent: var(--accent);
   --color-link: var(--link);
   --color-muted: var(--muted);
