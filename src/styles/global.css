@@ -81,8 +81,8 @@ html[data-theme="dark"] {
   body {
     @apply flex min-h-svh flex-col bg-background text-foreground selection:bg-accent/75 selection:text-background;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 13px;
+    line-height: 1.65;
   }
   a,
   button {
