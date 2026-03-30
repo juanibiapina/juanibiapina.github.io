@@ -5,18 +5,18 @@
 
 :root,
 html[data-theme="light"] {
-  --background: #f0eff5;
+  --background: #eae8f2;
   --foreground: #18182a;
   --accent: #cc1166;
-  --muted: #e4e3ec;
-  --border: #c8c8d6;
+  --muted: #dddbe9;
+  --border: #c2c0d2;
 }
 
 html[data-theme="dark"] {
-  --background: #0a0a0f;
+  --background: #14102a;
   --foreground: #e0e0e8;
   --accent: #ff2d7b;
-  --muted: #121218bf;
+  --muted: #1e1835bf;
   --border: #7a7a90;
 }
 

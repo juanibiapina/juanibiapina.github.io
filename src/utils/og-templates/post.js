@@ -99,7 +99,7 @@ export default async post => {
       type: "div",
       props: {
         style: {
-          background: "#0a0a0f",
+          background: "#14102a",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -115,7 +115,7 @@ export default async post => {
                 top: "-1px",
                 right: "-1px",
                 border: "4px solid #7a7a90",
-                background: "#121218",
+                background: "#1e1835",
                 opacity: "0.9",
                 borderRadius: "4px",
                 display: "flex",
@@ -131,7 +131,7 @@ export default async post => {
             props: {
               style: {
                 border: "4px solid #ff2d7b",
-                background: "#0a0a0f",
+                background: "#14102a",
                 borderRadius: "4px",
                 display: "flex",
                 justifyContent: "center",
