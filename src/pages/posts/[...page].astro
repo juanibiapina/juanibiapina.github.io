@@ -74,7 +74,7 @@ for (const post of sortedPosts) {
               <h3 class="text-base font-medium opacity-80">
                 {monthGroup.month}
               </h3>
-              <ul>
+              <ul class="mt-2 flex flex-col gap-3">
                 {monthGroup.posts.map(data => (
                   <Card {...data} />
                 ))}

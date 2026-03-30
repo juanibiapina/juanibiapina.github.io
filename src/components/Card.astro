@@ -2,8 +2,14 @@
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@/utils/slugify";
 import { getPath } from "@/utils/getPath";
-import Datetime from "./Datetime.astro";
 import { getReadingTime } from "@/utils/getReadingTime";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import { SITE } from "@/config";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 type Props = {
   variant?: "h2" | "h3";
@@ -11,24 +17,81 @@ type Props = {
 
 const { variant: Heading = "h2", id, body, data, filePath } = Astro.props;
 
-const { title, description, ...props } = data;
+const { title, description, pubDatetime, modDatetime, timezone: postTimezone } =
+  data;
 
 const readingTime = body ? getReadingTime(body) : undefined;
+
+const isModified = modDatetime && modDatetime > pubDatetime;
+const datetime = dayjs(isModified ? modDatetime : pubDatetime).tz(
+  postTimezone || SITE.timezone
+);
+const date = datetime.format("YYYY-MM-DD");
 ---
 
-<li class="my-6">
-  <a
-    href={getPath(id, filePath)}
-    class:list={[
-      "inline-block text-lg font-medium text-accent",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
-    ]}
-  >
-    <Heading style={{ viewTransitionName: slugifyStr(title) }}>
+<li class="card-item">
+  <a href={getPath(id, filePath)} class="card-link">
+    <span class="card-date">
+      <time datetime={datetime.toISOString()}>{date}</time>
+      {readingTime && <span> · {readingTime} min</span>}
+    </span>
+    <Heading
+      class="card-title"
+      style={{ viewTransitionName: slugifyStr(title) }}
+    >
       {title}
     </Heading>
+    {description && <p class="card-desc">{description}</p>}
   </a>
-  <Datetime {...props} {readingTime} />
-  <p>{description}</p>
 </li>
+
+<style>
+  .card-item {
+    list-style: none;
+  }
+
+  .card-link {
+    display: block;
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem 1rem;
+    text-decoration: none;
+    transition:
+      border-color 0.25s,
+      box-shadow 0.25s;
+  }
+
+  .card-link:hover {
+    border-color: var(--link);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--link) 12%, transparent);
+  }
+
+  .card-date {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--foreground);
+    opacity: 0.55;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--foreground-bright);
+    line-height: 1.4;
+    margin: 0 0 0.4rem;
+    transition: color 0.2s;
+  }
+
+  .card-link:hover .card-title {
+    color: var(--link);
+  }
+
+  .card-desc {
+    font-size: 0.8rem;
+    color: var(--foreground);
+    opacity: 0.7;
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>
