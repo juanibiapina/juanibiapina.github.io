@@ -96,14 +96,14 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
   <BackButton />
   <main
     id="main-content"
-    class:list={["mx-auto w-full max-w-3xl px-4 pb-12", { "mt-8": !SITE.showBackButton }]}
+    class:list={["mx-auto w-full max-w-2xl px-4 pb-12", { "mt-8": !SITE.showBackButton }]}
     data-pagefind-body
     data-prev-post={prevPostHref}
     data-next-post={nextPostHref}
   >
     <h1
       transition:name={slugifyStr(title)}
-      class="inline-block text-2xl font-bold text-accent sm:text-3xl"
+      class="inline-block text-xl font-extrabold text-accent sm:text-2xl"
     >
       {title}
     </h1>
@@ -120,7 +120,7 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
     </div>
     <article
       id="article"
-      class="prose mt-8 w-full max-w-3xl prose-pre:bg-(--shiki-light-bg) prose-pre:text-(--shiki-light) dark:prose-pre:bg-(--shiki-dark-bg) dark:prose-pre:text-(--shiki-dark)"
+      class="prose mt-8 w-full max-w-2xl prose-pre:bg-(--shiki-light-bg) prose-pre:text-(--shiki-light) dark:prose-pre:bg-(--shiki-dark-bg) dark:prose-pre:text-(--shiki-dark)"
     >
       <Content />
     </article>
