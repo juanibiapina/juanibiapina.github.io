@@ -104,9 +104,8 @@ export default async () => {
                         children: {
                           type: "span",
                           props: {
-                            style: { overflow: "hidden", fontWeight: "bold" },
+                            style: { overflow: "hidden", fontWeight: "bold", color: "#ff2d7b" },
                             children: new URL(SITE.website).hostname,
-                            style: { color: "#ff2d7b" },
                           },
                         },
                       },
