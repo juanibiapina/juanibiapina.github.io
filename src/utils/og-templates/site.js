@@ -8,7 +8,7 @@ export default async () => {
       type: "div",
       props: {
         style: {
-          background: "#fefbfb",
+          background: "#0a0a0f",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -23,8 +23,8 @@ export default async () => {
                 position: "absolute",
                 top: "-1px",
                 right: "-1px",
-                border: "4px solid #000",
-                background: "#ecebeb",
+                border: "4px solid #7a7a90",
+                background: "#121218",
                 opacity: "0.9",
                 borderRadius: "4px",
                 display: "flex",
@@ -39,8 +39,8 @@ export default async () => {
             type: "div",
             props: {
               style: {
-                border: "4px solid #000",
-                background: "#fefbfb",
+                border: "4px solid #ff2d7b",
+                background: "#0a0a0f",
                 borderRadius: "4px",
                 display: "flex",
                 justifyContent: "center",
@@ -77,14 +77,14 @@ export default async () => {
                           {
                             type: "p",
                             props: {
-                              style: { fontSize: 72, fontWeight: "bold" },
+                              style: { fontSize: 72, fontWeight: "bold", color: "#e0e0e8" },
                               children: SITE.title,
                             },
                           },
                           {
                             type: "p",
                             props: {
-                              style: { fontSize: 28 },
+                              style: { fontSize: 28, color: "#7a7a90" },
                               children: SITE.desc,
                             },
                           },
@@ -106,6 +106,7 @@ export default async () => {
                           props: {
                             style: { overflow: "hidden", fontWeight: "bold" },
                             children: new URL(SITE.website).hostname,
+                            style: { color: "#ff2d7b" },
                           },
                         },
                       },
