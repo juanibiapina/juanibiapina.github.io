@@ -14,6 +14,8 @@ html[data-theme="light"] {
   --muted: #e0e1ea;
   --border: #c5c6d4;
   --border-hover: #a6a7b8;
+  --selection-bg: rgba(204, 17, 102, 0.15);
+  --glow-link: transparent;
 }
 
 html[data-theme="dark"] {
@@ -25,6 +27,8 @@ html[data-theme="dark"] {
   --muted: #1e1835bf;
   --border: #2a2240;
   --border-hover: #3a3455;
+  --selection-bg: rgba(0, 240, 255, 0.2);
+  --glow-link: rgba(0, 240, 255, 0.3);
 }
 
 @theme {
@@ -81,10 +85,19 @@ html[data-theme="dark"] {
     @apply overflow-y-scroll scroll-smooth;
   }
   body {
-    @apply flex min-h-svh flex-col bg-background text-foreground selection:bg-accent/75 selection:text-background;
+    @apply flex min-h-svh flex-col bg-background text-foreground;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 13px;
     line-height: 1.65;
+  }
+  ::selection {
+    background: var(--selection-bg);
+  }
+  a {
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+  a:hover {
+    text-shadow: 0 0 8px var(--glow-link);
   }
   a,
   button {
