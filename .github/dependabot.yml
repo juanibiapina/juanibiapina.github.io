@@ -16,11 +16,6 @@ updates:
     labels:
       - "dependencies"
       - "npm"
-    # Ignore TypeScript 6 until @astrojs/check supports it.
-    ignore:
-      - dependency-name: "typescript"
-        update-types:
-          - "version-update:semver-major"
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
