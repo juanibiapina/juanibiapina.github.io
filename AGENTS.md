@@ -35,5 +35,5 @@ Optional frontmatter fields: `author`, `modDatetime`, `featured`, `draft`, `ogIm
 ## Commands
 
 - `npm run dev` - Dev server at localhost:4321
-- `npm run build` - Runs `astro check`, `astro build`, then `pagefind --site dist`
+- `npm run build` - Runs `astro build`, then `pagefind --site dist`
 - `npm run preview` - Preview production build locally
