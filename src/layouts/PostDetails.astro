@@ -41,13 +41,16 @@ const { Content } = await render(post);
 const readingTime = post.body ? getReadingTime(post.body) : undefined;
 const wordCount = post.body ? getWordCount(post.body) : undefined;
 
+let heroImageUrl: string | undefined;
 let ogImageUrl: string | undefined;
 
 // Determine OG image source
 if (typeof initOgImage === "string") {
-  ogImageUrl = initOgImage; // Remote OG image (absolute URL)
+  heroImageUrl = initOgImage;
+  ogImageUrl = initOgImage;
 } else if (initOgImage?.src) {
-  ogImageUrl = initOgImage.src; // Local asset
+  heroImageUrl = initOgImage.src;
+  ogImageUrl = initOgImage.src;
 }
 
 // Use dynamic OG image if enabled and no remote|local ogImage
@@ -118,6 +121,15 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
       >
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
+    {
+      heroImageUrl && (
+        <img
+          src={heroImageUrl}
+          alt=""
+          class="mt-8 w-full border-2 border-border"
+        />
+      )
+    }
     <article
       id="article"
       class="prose mt-8 w-full max-w-2xl prose-pre:bg-(--shiki-light-bg) prose-pre:text-(--shiki-light) dark:prose-pre:bg-(--shiki-dark-bg) dark:prose-pre:text-(--shiki-dark)"
