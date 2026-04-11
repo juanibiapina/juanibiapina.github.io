@@ -9,7 +9,8 @@ Personal blog of Juan Ibiapina, built on [AstroPaper v5.5.1](https://github.com/
 ## New Blog Post Workflow
 
 1. Create file: `src/data/blog/YYYY-MM-DD-slug.md`
-2. Required frontmatter:
+2. Store post images in `src/assets/blog/<slug>/`
+3. Required frontmatter:
 
 ```yaml
 ---
@@ -22,6 +23,17 @@ tags:
 ```
 
 Optional frontmatter fields: `author`, `modDatetime`, `featured`, `draft`, `ogImage`, `canonicalURL`, `hideEditPost`, `timezone`.
+
+### Image Conventions
+
+- Keep markdown posts in `src/data/blog/`
+- Keep post images in `src/assets/blog/<slug>/`
+- Use `ogImage` for the hero image when possible. It is also used for social previews and rendered automatically at the top of the post.
+- Example:
+
+```yaml
+ogImage: "../../assets/blog/paper-first/hero.jpg"
+```
 
 ## Key Files
 

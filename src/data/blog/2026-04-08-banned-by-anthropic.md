@@ -1,7 +1,7 @@
 ---
 title: "Anthropic banned me for trying to use Claude Max on pi"
 description: "Reminder of what I care about"
-ogImage: "./anthropic-ban-email.png"
+ogImage: "../../assets/blog/banned-by-anthropic/anthropic-ban-email.png"
 pubDatetime: 2026-04-08T00:00:00Z
 tags:
   - ai

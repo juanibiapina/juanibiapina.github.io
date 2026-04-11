@@ -1,7 +1,7 @@
 ---
 title: "The paper-first rule"
 description: "Using paper to bring back focus and intentionality to AI coding"
-ogImage: "./paper-first-horizontal.jpg"
+ogImage: "../../assets/blog/paper-first/hero.jpg"
 pubDatetime: 2026-04-11T00:00:00Z
 tags:
   - ai
