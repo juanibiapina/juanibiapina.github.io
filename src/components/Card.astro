@@ -17,8 +17,18 @@ type Props = {
 
 const { variant: Heading = "h2", id, body, data, filePath } = Astro.props;
 
-const { title, description, pubDatetime, modDatetime, timezone: postTimezone } =
-  data;
+const {
+  title,
+  description,
+  ogImage,
+  pubDatetime,
+  modDatetime,
+  timezone: postTimezone,
+} = data;
+
+const thumbnailSrc = typeof ogImage === "string" ? ogImage : ogImage?.src;
+const thumbnailWidth = typeof ogImage === "string" ? undefined : ogImage?.width;
+const thumbnailHeight = typeof ogImage === "string" ? undefined : ogImage?.height;
 
 const readingTime = body ? getReadingTime(body) : undefined;
 
@@ -31,6 +41,19 @@ const date = datetime.format("YYYY-MM-DD");
 
 <li class="card-item">
   <a href={getPath(id, filePath)} class="card-link">
+    {
+      thumbnailSrc && (
+        <img
+          class="card-image"
+          src={thumbnailSrc}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          width={thumbnailWidth}
+          height={thumbnailHeight}
+        />
+      )
+    }
     <span class="card-date">
       <time datetime={datetime.toISOString()}>{date}</time>
       {readingTime && <span> · {readingTime} min</span>}
@@ -58,6 +81,16 @@ const date = datetime.format("YYYY-MM-DD");
     transition:
       border-color 0.25s,
       box-shadow 0.25s;
+  }
+
+  .card-image {
+    display: block;
+    width: calc(100% + 2.8rem);
+    margin: -1.2rem -1.4rem 0.9rem;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+    background: var(--muted);
   }
 
   .card-link:hover {
