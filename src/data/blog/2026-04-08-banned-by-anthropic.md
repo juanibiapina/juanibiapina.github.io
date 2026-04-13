@@ -19,7 +19,7 @@ I was trying to use my Claude Max subscription on pi. Sorry :(
 
 I felt so sad.
 
-All I wanted was to use pi with Opus 4.6. Yes, I could use the API instead, but the cost would be astronomical.
+I wanted was to use [pi](https://pi.dev) with Opus 4.6. Yes, I could use the API instead, but the cost would be astronomical and I can't offord it.
 
 Why didn't I just use Claude Code? It probably would have worked well. In fact, it probably would have worked better than pi, because I would not have spent countless hours customizing every minimal aspect of my setup.
 
