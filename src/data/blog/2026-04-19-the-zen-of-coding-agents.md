@@ -8,7 +8,7 @@ tags:
   - zen
 ---
 
-> "LLM output is a very useful set of random words."
+> LLM output is a very useful set of random words.
 
 My friend [Kao Félix](https://kaofelix.dev/) always says something like that.
 
