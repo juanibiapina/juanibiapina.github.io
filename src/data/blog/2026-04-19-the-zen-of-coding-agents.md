@@ -2,8 +2,10 @@
 title: "Zen in Coding Agents"
 description: "LLM output is a very useful set of random words."
 pubDatetime: 2026-04-19T00:00:00Z
+ogImage: "../../assets/blog/the-zen-of-coding-agents/hero.png"
 tags:
   - ai
+  - zen
 ---
 
 > "LLM output is a very useful set of random words."
