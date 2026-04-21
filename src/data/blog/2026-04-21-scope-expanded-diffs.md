@@ -73,7 +73,7 @@ fn render_diff_line(
 }
 ```
 
-This shows the entire function, and it's easy to see what changed: a new `scope_expanded` argument is added to the signature and passed through to `render_hunk_separator`. Easy to see in this diff. It also literally shows the entire function, which allows me to keep learning about the codebase since I don't literally type the code anymore.
+This shows the entire function, and it's easy to see what changed: a new `scope_expanded` argument is added to the signature and passed through to `render_hunk_separator`. Easy to see in this diff. It also shows the entire function, which allows me to keep learning about the codebase since I don't literally type the code anymore.
 
 Here is another example:
 
