@@ -7,7 +7,6 @@ tags:
   - tooling
   - tree-sitter
 ogImage: "../../assets/blog/scope-expanded-diffs/hero.png"
-draft: true
 ---
 
 I review a lot of AI generated code.
