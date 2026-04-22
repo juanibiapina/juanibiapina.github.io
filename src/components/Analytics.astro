@@ -1,0 +1,32 @@
+---
+import { PUBLIC_GA_MEASUREMENT_ID } from "astro:env/client";
+---
+
+{
+  PUBLIC_GA_MEASUREMENT_ID && (
+    <>
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GA_MEASUREMENT_ID}`}
+      />
+      <script is:inline define:vars={{ measurementId: PUBLIC_GA_MEASUREMENT_ID }}>
+        if (import.meta.env.PROD) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag("js", new Date());
+          gtag("config", measurementId);
+
+          // Track page views on View Transitions navigation
+          document.addEventListener("astro:page-load", () => {
+            gtag("event", "page_view", {
+              page_location: window.location.href,
+              page_title: document.title,
+            });
+          });
+        }
+      </script>
+    </>
+  )
+}
