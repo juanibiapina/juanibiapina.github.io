@@ -55,7 +55,7 @@ html[data-theme="dark"] {
   }
   body {
     @apply flex min-h-svh flex-col bg-background text-foreground;
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
     font-size: 13px;
     line-height: 1.65;
   }

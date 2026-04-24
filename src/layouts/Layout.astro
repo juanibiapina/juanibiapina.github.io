@@ -1,15 +1,8 @@
 ---
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { SITE } from "@/config";
 import Analytics from "@/components/Analytics.astro";
 import "@/styles/global.css";
-
-const toggleThemeScript = readFileSync(
-  resolve(process.cwd(), "public/toggle-theme.js"),
-  "utf-8"
-);
 
 type Props = {
   title?: string;
@@ -74,20 +67,6 @@ const structuredData = pubDatetime
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap"
-      />
-    </noscript>
     {canonicalURL !== null && (
       <link rel="canonical" href={canonicalURL} />
     )}
@@ -173,7 +152,39 @@ const structuredData = pubDatetime
       )
     }
 
-    <script is:inline set:html={toggleThemeScript} />
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored ?? (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+
+        const syncThemeColor = () => {
+          const bg = getComputedStyle(document.body).backgroundColor;
+          document.querySelector("meta[name='theme-color']")?.setAttribute("content", bg);
+        };
+
+        const applyTheme = (value) => {
+          document.documentElement.setAttribute("data-theme", value);
+          localStorage.setItem("theme", value);
+          document.querySelector("#theme-btn")?.setAttribute("aria-label", value);
+          syncThemeColor();
+        };
+
+        window.addEventListener("DOMContentLoaded", () => {
+          applyTheme(theme);
+          document.querySelector("#theme-btn")?.addEventListener("click", () => {
+            const current = document.documentElement.getAttribute("data-theme");
+            applyTheme(current === "light" ? "dark" : "light");
+          });
+        });
+
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+          applyTheme(e.matches ? "dark" : "light");
+        });
+      })();
+    </script>
   </head>
   <body>
     <slot />

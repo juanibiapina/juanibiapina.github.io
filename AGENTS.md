@@ -28,7 +28,8 @@ Optional frontmatter fields: `author`, `modDatetime`, `featured`, `draft`, `ogIm
 
 - Keep markdown posts in `src/data/blog/`
 - Keep post images in `src/assets/blog/<slug>/`
-- Use `ogImage` for the hero image when possible. It is also used for social previews and rendered automatically at the top of the post.
+- Use `ogImage` for the hero image. It drives the post hero (rendered at the top via Astro `<Image>` as WebP) and social previews. Post lists are text-only; they do not render `ogImage`.
+- Keep source images at ≤ 1600 px wide and ≤ ~120 KB; Astro emits responsive WebP at build time.
 - Example:
 
 ```yaml

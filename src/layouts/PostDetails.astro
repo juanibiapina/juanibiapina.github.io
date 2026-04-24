@@ -1,5 +1,6 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
@@ -40,16 +41,18 @@ const { Content } = await render(post);
 const readingTime = post.body ? getReadingTime(post.body) : undefined;
 const wordCount = post.body ? getWordCount(post.body) : undefined;
 
-let heroImageUrl: string | undefined;
+const heroImageAsset =
+  initOgImage && typeof initOgImage !== "string" ? initOgImage : undefined;
+const heroImageSrc =
+  typeof initOgImage === "string" ? initOgImage : undefined;
+
 let ogImageUrl: string | undefined;
 
 // Determine OG image source
-if (typeof initOgImage === "string") {
-  heroImageUrl = initOgImage;
-  ogImageUrl = initOgImage;
-} else if (initOgImage?.src) {
-  heroImageUrl = initOgImage.src;
-  ogImageUrl = initOgImage.src;
+if (heroImageSrc) {
+  ogImageUrl = heroImageSrc;
+} else if (heroImageAsset) {
+  ogImageUrl = heroImageAsset.src;
 }
 
 // Use dynamic OG image if enabled and no remote|local ogImage
@@ -119,11 +122,27 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
     {
-      heroImageUrl && (
-        <img
-          src={heroImageUrl}
+      heroImageAsset && (
+        <Image
+          src={heroImageAsset}
           alt=""
           class="mt-8 w-full border-2 border-border"
+          widths={[480, 768, 1024, 1280]}
+          sizes="(min-width: 672px) 640px, 100vw"
+          format="webp"
+          loading="eager"
+          fetchpriority="high"
+        />
+      )
+    }
+    {
+      heroImageSrc && (
+        <img
+          src={heroImageSrc}
+          alt=""
+          class="mt-8 w-full border-2 border-border"
+          loading="eager"
+          fetchpriority="high"
         />
       )
     }

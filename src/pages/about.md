@@ -5,7 +5,7 @@ title: "About"
 
 <div class="mb-8 flex flex-wrap items-start gap-6">
   <img
-    src="https://github.com/juanibiapina.png"
+    src="/avatar.jpg"
     alt="Juan Ibiapina"
     class="size-40 flex-shrink-0 rounded-full"
   />

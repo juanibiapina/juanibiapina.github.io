@@ -111,8 +111,8 @@ const structuredData = [
         >
           <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
           <ul class="mt-4 flex flex-col gap-4">
-            {featuredPosts.map((data, index) => (
-              <Card variant="h3" eager={index === 0} {...data} />
+            {featuredPosts.map(data => (
+              <Card variant="h3" {...data} />
             ))}
           </ul>
         </section>
@@ -127,11 +127,7 @@ const structuredData = [
             {recentPosts.map(
               (data, index) =>
                 index < SITE.postPerIndex && (
-                  <Card
-                    variant="h3"
-                    eager={featuredPosts.length === 0 && index === 0}
-                    {...data}
-                  />
+                  <Card variant="h3" {...data} />
                 )
             )}
           </ul>
