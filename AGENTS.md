@@ -37,7 +37,7 @@ ogImage: "../../assets/blog/paper-first/hero.jpg"
 
 ## Key Files
 
-- `src/config.ts` - Site identity, author, feature flags (`showArchives`, `postPerPage`, etc.)
+- `src/config.ts` - Site identity, author, feature flags (`postPerPage`, `lightAndDarkMode`, etc.)
 - `src/constants.ts` - Social links and share links
 - `astro.config.ts` - Astro/Vite config, markdown plugins, shiki themes
 - `src/content.config.ts` - Blog collection schema
