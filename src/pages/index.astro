@@ -54,7 +54,7 @@ const structuredData = [
     }
   </Fragment>
   <Header />
-  <main id="main-content" data-layout="index" class="mx-auto w-full max-w-2xl px-4">
+  <main id="main-content" class="mx-auto w-full max-w-2xl px-4">
     <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
       <div class="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
         <Image
@@ -148,11 +148,3 @@ const structuredData = [
   </main>
   <Footer />
 </Layout>
-
-<script>
-  const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-    ?.dataset?.layout;
-  if (indexLayout) {
-    sessionStorage.setItem("backUrl", "/");
-  }
-</script>

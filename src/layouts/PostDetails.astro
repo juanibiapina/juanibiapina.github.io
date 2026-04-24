@@ -7,7 +7,6 @@ import Tag from "@/components/Tag.astro";
 import Datetime from "@/components/Datetime.astro";
 import EditPost from "@/components/EditPost.astro";
 import ShareLinks from "@/components/ShareLinks.astro";
-import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
 import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
@@ -96,10 +95,9 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
 
 <Layout {...layoutProps}>
   <Header />
-  <BackButton />
   <main
     id="main-content"
-    class:list={["mx-auto w-full max-w-2xl px-4 pb-12", { "mt-8": !SITE.showBackButton }]}
+    class="mx-auto mt-8 w-full max-w-2xl px-4 pb-12"
     data-pagefind-body
     data-prev-post={prevPostHref}
     data-next-post={nextPostHref}
