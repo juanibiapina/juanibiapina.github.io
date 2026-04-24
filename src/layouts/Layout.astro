@@ -2,13 +2,13 @@
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 import { SITE } from "@/config";
 import Analytics from "@/components/Analytics.astro";
 import "@/styles/global.css";
 
 const toggleThemeScript = readFileSync(
-  fileURLToPath(new URL("../../public/toggle-theme.js", import.meta.url)),
+  resolve(process.cwd(), "public/toggle-theme.js"),
   "utf-8"
 );
 
