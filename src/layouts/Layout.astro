@@ -1,9 +1,16 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { SITE } from "@/config";
 import Analytics from "@/components/Analytics.astro";
 import "@/styles/global.css";
+
+const toggleThemeScript = readFileSync(
+  fileURLToPath(new URL("../../public/toggle-theme.js", import.meta.url)),
+  "utf-8"
+);
 
 type Props = {
   title?: string;
@@ -68,6 +75,12 @@ const structuredData = pubDatetime
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap"
+    />
     {canonicalURL !== null && (
       <link rel="canonical" href={canonicalURL} />
     )}
@@ -155,7 +168,7 @@ const structuredData = pubDatetime
 
     <ClientRouter />
 
-    <script is:inline src="/toggle-theme.js"></script>
+    <script is:inline set:html={toggleThemeScript} />
   </head>
   <body>
     <slot />

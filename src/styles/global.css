@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap");
 @import "tailwindcss";
 @import "./typography.css";
 
@@ -12,6 +11,7 @@ html[data-theme="light"] {
   --accent: #cc1166;
   --link: #00717f;
   --muted: #e0e1ea;
+  --muted-foreground: #5a5a72;
   --border: #c5c6d4;
   --border-hover: #a6a7b8;
   --selection-bg: rgba(204, 17, 102, 0.15);
@@ -25,6 +25,7 @@ html[data-theme="dark"] {
   --accent: #ff2d7b;
   --link: #00f0ff;
   --muted: #1e1835bf;
+  --muted-foreground: #a0a0b0;
   --border: #2a2240;
   --border-hover: #3a3455;
   --selection-bg: rgba(0, 240, 255, 0.2);
