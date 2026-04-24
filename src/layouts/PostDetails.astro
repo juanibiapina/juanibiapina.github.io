@@ -105,7 +105,6 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
     data-next-post={nextPostHref}
   >
     <h1
-      transition:name={slugifyStr(title)}
       class="inline-block text-xl font-extrabold text-foreground-bright sm:text-2xl"
     >
       {title}
@@ -186,7 +185,7 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
   <Footer />
 </Layout>
 
-<script is:inline data-astro-rerun>
+<script is:inline>
   /** Create a progress indicator
    *  at the top */
   function createProgressBar() {
@@ -325,9 +324,4 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
     });
   }
   setupKeyboardNav();
-
-  /* Go to page start after page swap */
-  document.addEventListener("astro:after-swap", () =>
-    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
-  );
 </script>

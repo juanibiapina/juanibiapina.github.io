@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
-import { slugifyStr } from "@/utils/slugify";
 import { getPath } from "@/utils/getPath";
 import { getReadingTime } from "@/utils/getReadingTime";
 import dayjs from "dayjs";
@@ -79,10 +78,7 @@ const date = datetime.format("YYYY-MM-DD");
       <time datetime={datetime.toISOString()}>{date}</time>
       {readingTime && <span> · {readingTime} min</span>}
     </span>
-    <Heading
-      class="card-title"
-      style={{ viewTransitionName: slugifyStr(title) }}
-    >
+    <Heading class="card-title">
       {title}
     </Heading>
     {description && <p class="card-desc">{description}</p>}

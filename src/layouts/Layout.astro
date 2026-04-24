@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -173,8 +172,6 @@ const structuredData = pubDatetime
         />
       )
     }
-
-    <ClientRouter />
 
     <script is:inline set:html={toggleThemeScript} />
   </head>

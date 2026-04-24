@@ -13,7 +13,6 @@ const { tag, tagName, size = "lg" } = Astro.props;
 <li>
   <a
     href={`/tags/${tag}/`}
-    transition:name={tag}
     class:list={[
       "inline-flex items-center gap-0.5 opacity-70 hover:text-accent hover:opacity-100",
       "focus-visible:text-accent",
