@@ -1,5 +1,6 @@
 ---
 import { PUBLIC_GA_MEASUREMENT_ID } from "astro:env/client";
+const isProd = import.meta.env.PROD;
 ---
 
 {
@@ -9,8 +10,8 @@ import { PUBLIC_GA_MEASUREMENT_ID } from "astro:env/client";
         async
         src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GA_MEASUREMENT_ID}`}
       />
-      <script is:inline define:vars={{ measurementId: PUBLIC_GA_MEASUREMENT_ID }}>
-        if (import.meta.env.PROD) {
+      <script is:inline define:vars={{ measurementId: PUBLIC_GA_MEASUREMENT_ID, isProd }}>
+        if (isProd) {
           window.dataLayer = window.dataLayer || [];
           function gtag() {
             dataLayer.push(arguments);
