@@ -11,7 +11,8 @@ type Props = {
   profile?: string;
   description?: string;
   ogImage?: string;
-  canonicalURL?: string;
+  canonicalURL?: string | URL | null;
+  robots?: string;
   pubDatetime?: Date;
   modDatetime?: Date | null;
   scrollSmooth?: boolean;
@@ -26,6 +27,7 @@ const {
   description = SITE.desc,
   ogImage = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png",
   canonicalURL = new URL(Astro.url.pathname, Astro.url),
+  robots,
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
@@ -66,7 +68,10 @@ const structuredData = pubDatetime
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonicalURL} />
+    {canonicalURL !== null && (
+      <link rel="canonical" href={canonicalURL} />
+    )}
+    {robots && <meta name="robots" content={robots} />}
     <meta name="generator" content={Astro.generator} />
 
     <!-- General Meta Tags -->
@@ -79,7 +84,9 @@ const structuredData = pubDatetime
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
+    {canonicalURL !== null && (
+      <meta property="og:url" content={canonicalURL} />
+    )}
     <meta property="og:image" content={socialImageURL} />
 
     <!-- Article Published/Modified time -->
@@ -102,7 +109,9 @@ const structuredData = pubDatetime
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
+    {canonicalURL !== null && (
+      <meta property="twitter:url" content={canonicalURL} />
+    )}
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL} />
