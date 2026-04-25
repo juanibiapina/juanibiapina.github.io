@@ -49,4 +49,4 @@ You can find me around the internet:
 - [GitHub](https://github.com/juanibiapina)
 - [X / Twitter](https://x.com/IbiapinaJuan)
 - [LinkedIn](https://www.linkedin.com/in/juan-i-10025313/)
-- [Email](mailto:juanibiapina@gmail.com)
+- [Email](mailto:me@juanibiapina.dev)
