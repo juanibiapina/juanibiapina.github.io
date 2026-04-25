@@ -1,7 +1,6 @@
 ---
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
-import Analytics from "@/components/Analytics.astro";
 import "@/styles/global.css";
 
 type Props = {
@@ -188,7 +187,6 @@ const structuredData = pubDatetime
   </head>
   <body>
     <slot />
-    <Analytics />
   </body>
 </html>
 
