@@ -15,6 +15,12 @@ import { SITE } from "./src/config";
 export default defineConfig({
   site: SITE.website,
   integrations: [sitemap()],
+  build: {
+    // Inline all stylesheets into the HTML to avoid render-blocking CSS requests.
+    // The site only emits a single Tailwind/global bundle, so this trades one extra
+    // request for ~9 KiB of inlined CSS per page and improves LCP.
+    inlineStylesheets: "always",
+  },
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
     shikiConfig: {
