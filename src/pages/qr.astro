@@ -1,0 +1,31 @@
+---
+import QRCode from "qrcode";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { SITE } from "@/config";
+
+const svg = await QRCode.toString(SITE.website, {
+  type: "svg",
+  width: 300,
+  margin: 2,
+});
+---
+
+<Layout title={`QR Code | ${SITE.title}`}>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex" />
+  </Fragment>
+  <Header />
+  <main
+    id="main-content"
+    class="mx-auto flex max-w-3xl flex-1 flex-col items-center justify-center px-4"
+  >
+    <h1 class="mb-4 text-2xl font-bold">Scan to visit</h1>
+    <div class="rounded-lg bg-white p-4">
+      <Fragment set:html={svg} />
+    </div>
+    <p class="mt-4 text-sm text-muted">{SITE.website}</p>
+  </main>
+  <Footer />
+</Layout>
