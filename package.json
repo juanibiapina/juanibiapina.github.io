@@ -16,7 +16,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "@types/qrcode": "^1.5.6",
     "astro": "^6.4.2",
-    "dayjs": "^1.11.20",
+    "dayjs": "^1.11.21",
     "lodash.kebabcase": "^4.1.1",
     "qrcode": "^1.5.4",
     "remark-collapse": "^0.1.2",
