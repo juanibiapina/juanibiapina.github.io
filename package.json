@@ -28,7 +28,7 @@
   "devDependencies": {
     "@pagefind/default-ui": "^1.5.2",
     "@shikijs/transformers": "^4.2.0",
-    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/lodash.kebabcase": "^4.1.9",
     "pagefind": "^1.5.2",
     "typescript": "^6.0.3"
