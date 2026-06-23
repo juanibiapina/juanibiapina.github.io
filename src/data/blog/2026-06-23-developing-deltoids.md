@@ -2,6 +2,7 @@
 title: "A Beautiful Machine to Watch"
 description: "Building Deltoids with an AI agent: vibe-slop, edge cases, legacy code, and the algorithm I had to feel my way toward. The tools changed; the feeling didn't."
 pubDatetime: 2026-06-23T00:00:00Z
+ogImage: "../../assets/blog/developing-deltoids/hero.jpg"
 tags:
   - ai
   - blog
