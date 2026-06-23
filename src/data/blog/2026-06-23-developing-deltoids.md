@@ -8,7 +8,7 @@ tags:
   - blog
 ---
 
-When developing [deltoids](https://deltoids.dev), I started with a problem I needed to solve. I wanted to see more context when reviewing code, and I wanted that context to be intelligent. Code is structured, but diffs only show a couple of lines before and after the change. I asked my AI agent to implement it, and the initial version was well designed. You could call it vibe-slop, in the sense that I didn't properly review it.
+When developing [deltoids](https://deltoids.dev), I started with a problem I needed to solve. I wanted to see more context when reviewing code, and I wanted that context to be intelligent. Code is structured, but diffs only show a couple of lines before and after the change. I asked my AI agent to implement it, and the initial version was not well designed. You could call it vibe-slop, in the sense that I didn't properly review it.
 
 As I used it, edge cases started to appear, and some were bad. Parts of the diff went missing. Some diffs got duplicated. Some showed up in the wrong order. All of these break the diff algorithm, and that's the last thing you want from a diff tool.
 
