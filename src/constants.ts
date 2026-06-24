@@ -1,6 +1,7 @@
 import type { Props } from "astro";
 import IconMail from "@/assets/icons/IconMail.svg";
 import IconQrcode from "@/assets/icons/IconQrcode.svg";
+import IconRss from "@/assets/icons/IconRss.svg";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
 import IconBrandX from "@/assets/icons/IconBrandX.svg";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
@@ -47,6 +48,12 @@ export const SOCIALS: Social[] = [
     href: "/qr",
     linkTitle: `QR code to ${SITE.author}'s site`,
     icon: IconQrcode,
+  },
+  {
+    name: "RSS",
+    href: "/rss.xml",
+    linkTitle: `${SITE.author}'s RSS feed`,
+    icon: IconRss,
   },
 ] as const;
 
