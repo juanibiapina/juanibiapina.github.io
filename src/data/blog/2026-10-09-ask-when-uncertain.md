@@ -20,7 +20,7 @@ How about instead we try to be precise in specifying outputs?
 
 That way we control the output. I expect three options. I expect pros and cons for each item in the list of criteria.
 
-## References
+## Interesting Articles
 
 Su, J., & Cardie, C. (2026). *Knowing but not showing: LLMs recognize ambiguity but rarely ask clarifying questions* [Preprint]. arXiv. <https://doi.org/10.48550/arXiv.2605.25284>
 
