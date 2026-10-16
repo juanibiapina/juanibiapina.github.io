@@ -39,7 +39,7 @@ export const SOCIALS: Social[] = [
   },
   {
     name: "Mail",
-    href: "mailto:me@juanibiapina.dev",
+    href: "mailto:me@juanm.dev",
     linkTitle: `Send an email to ${SITE.author}`,
     icon: IconMail,
   },
