@@ -1,6 +1,6 @@
 # Juan Ibiapina's Blog
 
-Personal blog at [juanibiapina.dev](https://juanibiapina.dev/), built with [AstroPaper v5.5.1](https://github.com/satnaing/astro-paper) and deployed to GitHub Pages.
+Personal blog at [juanm.dev](https://juanm.dev/), built with [AstroPaper v5.5.1](https://github.com/satnaing/astro-paper) and deployed to GitHub Pages.
 
 ## Commands
 
