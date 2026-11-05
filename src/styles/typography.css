@@ -1,111 +1,104 @@
 @plugin '@tailwindcss/typography';
 
-@layer base {
-  .prose {
-    font-size: 13px !important;
-    line-height: 1.65 !important;
-    @apply prose-headings:!mb-3 prose-headings:!text-foreground-bright prose-h3:italic prose-p:!text-foreground prose-a:!text-link prose-a:!no-underline hover:prose-a:underline hover:prose-a:decoration-dashed hover:prose-a:underline-offset-8 prose-blockquote:!border-l-accent/50 prose-blockquote:opacity-80 prose-figcaption:!text-foreground prose-figcaption:opacity-70 prose-strong:!text-link prose-code:rounded prose-code:bg-muted/75 prose-code:p-1 prose-code:!text-foreground prose-code:before:!content-none prose-code:after:!content-none prose-ol:!text-foreground prose-ul:overflow-x-clip prose-ul:!text-foreground prose-li:marker:!text-accent prose-table:text-foreground prose-th:border prose-th:border-border prose-td:border prose-td:border-border prose-img:mx-auto prose-img:!my-2 prose-img:border-2 prose-img:border-border prose-hr:!border-border;
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground-bright);
+  --tw-prose-lead: var(--foreground);
+  --tw-prose-links: var(--link);
+  --tw-prose-bold: var(--foreground-bright);
+  --tw-prose-counters: var(--accent);
+  --tw-prose-bullets: var(--accent);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--muted-foreground);
+  --tw-prose-quote-borders: var(--accent);
+  --tw-prose-captions: var(--muted-foreground);
+  --tw-prose-kbd: var(--foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-pre-code: var(--foreground);
+  --tw-prose-pre-bg: var(--muted);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+  font-size: 13px;
+  line-height: 1.65;
+
+  :is(h1, h2, h3, h4, h5, h6) {
+    margin-bottom: 0.75rem;
   }
-  .prose a {
+  h3 {
+    font-style: italic;
+  }
+  a {
+    @apply break-words no-underline decoration-dashed underline-offset-8 hover:underline;
+  }
+  blockquote {
     @apply break-words;
   }
-  .prose thead th:first-child,
-  tbody td:first-child,
-  tfoot td:first-child {
-    padding-inline-start: 0.5714286em !important;
+  :not(pre) > code {
+    @apply rounded bg-muted p-1 break-words;
   }
-  .prose h2#table-of-contents {
-    @apply mb-2;
+  code::before,
+  code::after {
+    content: none;
   }
-  .prose details {
-    @apply inline-block cursor-pointer text-foreground select-none;
-  }
-  .prose summary {
-    @apply focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent focus-visible:outline-dashed;
-  }
-  .prose h2#table-of-contents + p {
-    @apply hidden;
-  }
-
-  /* ===== Code Blocks & Syntax Highlighting ===== */
-  pre:has(code) {
-    @apply border border-border;
-  }
-
-  .prose code,
-  .prose blockquote {
-    @apply break-words;
-  }
-
-  .prose table code {
+  table code {
     @apply break-all sm:break-normal;
   }
-
-  pre > code {
-    white-space: pre;
+  :is(th, td) {
+    @apply border border-border;
   }
-
-  /* Light mode syntax highlighting contrast improvements */
-  html[data-theme="light"] pre:has(code),
-  html[data-theme="light"] pre:has(code) span,
-  :root pre:has(code),
-  :root pre:has(code) span {
-    --shiki-color-comment: #495057;
-    --shiki-token-comment: #495057;
+  :is(th, td):first-child {
+    padding-inline-start: 0.5714286em;
   }
-
-  html[data-theme="light"] pre code span[style*="color:#6C757D"],
-  :root pre code span[style*="color:#6C757D"] {
-    color: #495057 !important;
+  ul {
+    @apply overflow-x-clip;
   }
-
-  /* Apply Dark Theme (if multi-theme specified) */
-  html[data-theme="dark"] pre:has(code),
-  html[data-theme="dark"] pre:has(code) .line:not(.diff) {
-    background-color: var(--shiki-dark-bg) !important;
+  img {
+    @apply mx-auto my-2;
   }
-
-  pre:has(code) span {
-    font-style: var(--shiki-light-font-style);
-    font-weight: var(--shiki-light-font-weight);
-    text-decoration: var(--shiki-light-text-decoration);
+  details {
+    @apply inline-block cursor-pointer select-none;
   }
-
-  pre[data-language="ansi"] {
-    line-height: 1.4;
+  summary {
+    @apply focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent focus-visible:outline-dashed;
   }
-
-  html[data-theme="dark"] pre:has(code) span {
-    color: var(--shiki-dark) !important;
-    font-style: var(--shiki-dark-font-style) !important;
-    font-weight: var(--shiki-dark-font-weight) !important;
-    text-decoration: var(--shiki-dark-text-decoration) !important;
+  h2#table-of-contents {
+    @apply mb-2;
   }
-
-  /* ===== Shiki Transformer Styles ===== */
-  /* https://shiki.style/packages/transformers */
-  .astro-code {
-    @apply flex border bg-(--shiki-light-bg) text-(--shiki-light) outline-border [&_span]:text-(--shiki-light);
+  h2#table-of-contents + p {
+    @apply hidden;
   }
+}
 
-  html[data-theme="dark"] .astro-code {
-    @apply bg-(--shiki-dark-bg) text-(--shiki-dark) [&_span]:text-(--shiki-dark);
-  }
+pre:has(code) {
+  @apply border border-border;
+}
 
-  .astro-code {
-    .line.diff.add {
-      @apply relative inline-block w-full bg-[#22c55e]/25 before:absolute before:-left-3 before:text-[#22c55e] before:content-['+'];
-    }
-    .line.diff.remove {
-      @apply relative inline-block w-full bg-[#ef4444]/25 before:absolute before:-left-3 before:text-[#ef4444] before:content-['-'];
-    }
-    .line.highlighted {
-      @apply inline-block w-full bg-[#94a3b8]/20;
-    }
-    .highlighted-word {
-      @apply rounded-sm border border-border px-0.5 py-px;
-    }
-  }
+pre > code {
+  white-space: pre;
+}
 
+pre[data-language="ansi"] {
+  line-height: 1.4;
+}
 
+.astro-code span {
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+
+[data-theme="dark"] .astro-code span {
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}
+
+.astro-code .line.diff {
+  @apply relative inline-block w-full before:absolute before:-left-3 before:text-muted-foreground;
+}
+.astro-code .line.diff.add {
+  @apply bg-diff-add before:content-['+'];
+}
+.astro-code .line.diff.remove {
+  @apply bg-diff-remove before:content-['-'];
 }

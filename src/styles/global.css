@@ -5,31 +5,35 @@
 
 :root,
 html[data-theme="light"] {
-  --background: #ecedf3;
-  --foreground: #3a3a52;
-  --foreground-bright: #18182a;
-  --accent: #cc1166;
-  --link: #00717f;
-  --muted: #e0e1ea;
-  --muted-foreground: #5a5a72;
-  --border: #c5c6d4;
-  --border-hover: #a6a7b8;
-  --selection-bg: rgba(204, 17, 102, 0.15);
-  --glow-link: transparent;
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #1f2328;
+  --foreground-bright: #1f2328;
+  --muted-foreground: #59636e;
+  --accent: #8250df;
+  --link: #0969da;
+  --muted: #eff2f5;
+  --border: #d1d9e0;
+  --border-hover: #818b98;
+  --selection: rgba(9, 105, 218, 0.2);
+  --diff-add: rgba(26, 127, 55, 0.15);
+  --diff-remove: rgba(209, 36, 47, 0.15);
 }
 
 html[data-theme="dark"] {
-  --background: #14102a;
-  --foreground: #c8c8d0;
-  --foreground-bright: #e0e0e8;
-  --accent: #ff2d7b;
-  --link: #00f0ff;
-  --muted: #1e1835bf;
-  --muted-foreground: #a0a0b0;
-  --border: #2a2240;
-  --border-hover: #3a3455;
-  --selection-bg: rgba(0, 240, 255, 0.2);
-  --glow-link: rgba(0, 240, 255, 0.3);
+  color-scheme: dark;
+  --background: #222436;
+  --foreground: #c8d3f5;
+  --foreground-bright: #c8d3f5;
+  --muted-foreground: #828bb8;
+  --accent: #c099ff;
+  --link: #82aaff;
+  --muted: #2f334d;
+  --border: #3b4261;
+  --border-hover: #545c7e;
+  --selection: #2d3f76;
+  --diff-add: #2a4556;
+  --diff-remove: #4b2a3d;
 }
 
 @theme {
@@ -37,17 +41,19 @@ html[data-theme="dark"] {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-foreground-bright: var(--foreground-bright);
+  --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-link: var(--link);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-diff-add: var(--diff-add);
+  --color-diff-remove: var(--diff-remove);
 }
 
 @layer base {
   * {
     @apply border-border outline-accent/75;
-    scrollbar-width: auto;
-    scrollbar-color: var(--color-muted) transparent;
   }
 
   html {
@@ -60,13 +66,10 @@ html[data-theme="dark"] {
     line-height: 1.65;
   }
   ::selection {
-    background: var(--selection-bg);
+    background: var(--selection);
   }
   a {
-    transition: color 0.2s, text-shadow 0.2s;
-  }
-  a:hover {
-    text-shadow: 0 0 8px var(--glow-link);
+    transition: color 0.2s;
   }
   a,
   button {

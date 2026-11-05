@@ -44,8 +44,9 @@ ogImage: "../../assets/blog/paper-first/hero.jpg"
 - `src/constants.ts` - Social links and share links
 - `astro.config.ts` - Astro/Vite config, markdown plugins, shiki themes
 - `src/content.config.ts` - Blog collection schema
-- `src/styles/global.css` - Theme colors and base styles
-- `src/styles/typography.css` - Prose and code block styling
+- `src/styles/global.css` - Theme tokens, one block per theme (Tokyo Night Moon dark, GitHub light). Components use token utilities; no hex literals, no `!important`, no opacity for muted text
+- `src/styles/typography.css` - Prose colors via Tailwind Typography's `--tw-prose-*` variables, and code block styling
+- `src/utils/shikiThemes.ts` - Code and ANSI themes; Moon is vendored as JSON from folke/tokyonight.nvim `extras/sublime`
 
 ## Commands
 

@@ -14,7 +14,7 @@ const { tag, tagName, size = "lg" } = Astro.props;
   <a
     href={`/tags/${tag}/`}
     class:list={[
-      "inline-flex items-center gap-0.5 opacity-70 hover:text-accent hover:opacity-100",
+      "inline-flex items-center gap-0.5 text-muted-foreground hover:text-accent",
       "focus-visible:text-accent",
       { "text-sm": size === "sm" },
       { "text-sm": size === "lg" },

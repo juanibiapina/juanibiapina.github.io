@@ -33,59 +33,18 @@ const { iso, label } = getPostDate({
 });
 ---
 
-<li class="card-item">
-  <a href={getPath(id, filePath)} class="card-link">
-    <span class="card-date">
+<li class="list-none">
+  <a
+    href={getPath(id, filePath)}
+    class="block border border-border px-5 pt-5 pb-4 no-underline transition-colors duration-200 hover:border-border-hover"
+  >
+    <span class="mb-1.5 block text-xs tracking-wider text-muted-foreground">
       <time datetime={iso}>{label}</time>
       {readingTime && <span> · {readingTime} min</span>}
     </span>
-    <Heading class="card-title">
+    <Heading class="mb-1.5 text-base leading-snug font-bold text-link">
       {title}
     </Heading>
-    {description && <p class="card-desc">{description}</p>}
+    {description && <p class="leading-normal">{description}</p>}
   </a>
 </li>
-
-<style>
-  .card-item {
-    list-style: none;
-  }
-
-  .card-link {
-    display: block;
-    border: 1px solid var(--border);
-    padding: 1.2rem 1.4rem 1rem;
-    text-decoration: none;
-    transition:
-      border-color 0.25s,
-      box-shadow 0.25s;
-  }
-
-  .card-link:hover {
-    border-color: var(--border-hover);
-    box-shadow: 0 0 24px color-mix(in srgb, var(--link) 10%, transparent);
-  }
-
-  .card-date {
-    display: block;
-    font-size: 0.7rem;
-    color: var(--muted-foreground);
-    letter-spacing: 0.06em;
-    margin-bottom: 0.4rem;
-  }
-
-  .card-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--link);
-    line-height: 1.4;
-    margin: 0 0 0.4rem;
-  }
-
-  .card-desc {
-    font-size: 0.8rem;
-    color: var(--foreground);
-    line-height: 1.55;
-    margin: 0;
-  }
-</style>

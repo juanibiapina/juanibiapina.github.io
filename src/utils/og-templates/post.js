@@ -1,6 +1,7 @@
 import satori from "satori";
 import { SITE } from "@/config";
 import loadGoogleFonts from "../loadGoogleFont";
+import { palette } from "./palette";
 
 export default async post => {
   return satori(
@@ -8,7 +9,7 @@ export default async post => {
       type: "div",
       props: {
         style: {
-          background: "#14102a",
+          background: palette.background,
           width: "100%",
           height: "100%",
           display: "flex",
@@ -20,27 +21,8 @@ export default async post => {
             type: "div",
             props: {
               style: {
-                position: "absolute",
-                top: "-1px",
-                right: "-1px",
-                border: "4px solid #7a7a90",
-                background: "#1e1835",
-                opacity: "0.9",
-                borderRadius: "4px",
-                display: "flex",
-                justifyContent: "center",
-                margin: "2.5rem",
-                width: "88%",
-                height: "80%",
-              },
-            },
-          },
-          {
-            type: "div",
-            props: {
-              style: {
-                border: "4px solid #ff2d7b",
-                background: "#14102a",
+                border: `4px solid ${palette.accent}`,
+                background: palette.background,
                 borderRadius: "4px",
                 display: "flex",
                 justifyContent: "center",
@@ -68,7 +50,7 @@ export default async post => {
                           fontWeight: "bold",
                           maxHeight: "84%",
                           overflow: "hidden",
-                          color: "#e0e0e8",
+                          color: palette.title,
                         },
                         children: post.data.title,
                       },
@@ -87,7 +69,7 @@ export default async post => {
                           {
                             type: "span",
                             props: {
-                              style: { color: "#7a7a90" },
+                              style: { color: palette.meta },
                               children: [
                                 "by ",
                                 {
@@ -103,7 +85,7 @@ export default async post => {
                                     style: {
                                       overflow: "hidden",
                                       fontWeight: "bold",
-                                      color: "#e0e0e8",
+                                      color: palette.title,
                                     },
                                     children: post.data.author,
                                   },
@@ -114,7 +96,7 @@ export default async post => {
                           {
                             type: "span",
                             props: {
-                              style: { overflow: "hidden", fontWeight: "bold", color: "#ff2d7b" },
+                              style: { overflow: "hidden", fontWeight: "bold", color: palette.accent },
                               children: SITE.title,
                             },
                           },

@@ -3,12 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
-import {
-  transformerNotationDiff,
-  transformerNotationHighlight,
-  transformerNotationWordHighlight,
-} from "@shikijs/transformers";
-import { transformerFileName } from "./src/utils/transformers/fileName";
+import { transformerNotationDiff } from "@shikijs/transformers";
 import { lightTheme, darkTheme } from "./src/utils/shikiThemes";
 import { SITE } from "./src/config";
 
@@ -28,16 +23,10 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
     shikiConfig: {
-      // For more themes, visit https://shiki.style/themes
       themes: { light: lightTheme, dark: darkTheme },
-      defaultColor: false,
+      defaultColor: "light-dark()",
       wrap: false,
-      transformers: [
-        transformerFileName({ style: "v2", hideDot: false }),
-        transformerNotationHighlight(),
-        transformerNotationWordHighlight(),
-        transformerNotationDiff({ matchAlgorithm: "v3" }),
-      ],
+      transformers: [transformerNotationDiff({ matchAlgorithm: "v3" })],
     },
   },
   vite: {

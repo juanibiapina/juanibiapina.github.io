@@ -148,7 +148,7 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
     }
     <article
       id="article"
-      class="prose mt-8 w-full max-w-2xl prose-pre:bg-(--shiki-light-bg) prose-pre:text-(--shiki-light) dark:prose-pre:bg-(--shiki-dark-bg) dark:prose-pre:text-(--shiki-dark)"
+      class="prose mt-8 w-full max-w-2xl prose-img:border-2 prose-img:border-border"
     >
       <Content />
     </article>
@@ -173,12 +173,12 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
         prevPost && (
           <a
             href={prevPostHref}
-            class="flex w-full gap-1 hover:opacity-75"
+            class="group flex w-full gap-1"
           >
             <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
             <div>
               <span>Previous Post</span>
-              <div class="text-sm text-accent/85">{prevPost.title}</div>
+              <div class="text-sm text-accent group-hover:text-link">{prevPost.title}</div>
             </div>
           </a>
         )
@@ -187,11 +187,11 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
         nextPost && (
           <a
             href={nextPostHref}
-            class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
+            class="group flex w-full justify-end gap-1 text-end sm:col-start-2"
           >
             <div>
               <span>Next Post</span>
-              <div class="text-sm text-accent/85">{nextPost.title}</div>
+              <div class="text-sm text-accent group-hover:text-link">{nextPost.title}</div>
             </div>
             <IconChevronRight class="inline-block flex-none rtl:rotate-180" />
           </a>
@@ -254,7 +254,7 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
       heading.classList.add("group");
       const link = document.createElement("a");
       link.className =
-        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+        "heading-link ms-2 no-underline text-muted-foreground md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
       link.href = "#" + heading.id;
 
       const span = document.createElement("span");
@@ -276,18 +276,8 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
       const wrapper = document.createElement("div");
       wrapper.style.position = "relative";
 
-      // Check if --file-name-offset custom property exists
-      const computedStyle = getComputedStyle(codeBlock);
-      const hasFileNameOffset =
-        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
-
-      // Determine the top positioning class
-      const topClass = hasFileNameOffset
-        ? "top-(--file-name-offset)"
-        : "-top-3";
-
       const copyButton = document.createElement("button");
-      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.className = "copy-code absolute end-3 -top-3 rounded border border-border bg-background px-2 py-1 text-xs leading-4 text-muted-foreground font-medium hover:text-accent";
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
