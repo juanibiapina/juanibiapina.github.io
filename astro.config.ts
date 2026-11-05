@@ -9,6 +9,7 @@ import {
   transformerNotationWordHighlight,
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
+import { lightTheme, darkTheme } from "./src/utils/shikiThemes";
 import { SITE } from "./src/config";
 
 // https://astro.build/config
@@ -25,7 +26,7 @@ export default defineConfig({
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
-      themes: { light: "min-light", dark: "night-owl" },
+      themes: { light: lightTheme, dark: darkTheme },
       defaultColor: false,
       wrap: false,
       transformers: [
