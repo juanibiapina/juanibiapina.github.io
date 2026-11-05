@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'USAGE'
+Usage: scripts/capture-ansi <command> [args...]
+
+Runs the command with colors forced and prints a fenced ```ansi block for a blog post.
+
+Example:
+  scripts/capture-ansi but status | pbcopy
+USAGE
+}
+
+if [[ $# -eq 0 || $1 == "-h" || $1 == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+capture_output=$(
+  CLICOLOR_FORCE=1 \
+  COLUMNS=100 \
+  GIT_PAGER=cat \
+  BUT_PAGER=cat \
+  GIT_CONFIG_COUNT=4 \
+  GIT_CONFIG_KEY_0=color.ui GIT_CONFIG_VALUE_0=always \
+  GIT_CONFIG_KEY_1=color.status GIT_CONFIG_VALUE_1=always \
+  GIT_CONFIG_KEY_2=color.branch GIT_CONFIG_VALUE_2=always \
+  GIT_CONFIG_KEY_3=color.diff GIT_CONFIG_VALUE_3=always \
+  "$@" 2>&1 | perl -pe 's/\r//g; s/\e\[m/\e[0m/g'
+)
+
+printf '```ansi\n$ %s\n%s\n```\n' "$*" "$capture_output"
