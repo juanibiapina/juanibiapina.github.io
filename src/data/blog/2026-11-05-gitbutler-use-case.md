@@ -34,7 +34,7 @@ $ but status
 [2mHint: origin/master moved ahead; run `but pull` to update the workspace[0m
 ```
 
-Otherwise, you'd have to have one branch where you merge both your fixes, and it's super annoying.
+`alert-toasts-setting` and `terminal-line-height` are separate branches, applied at the same time. GitButler takes care of everything, including [rebasing all branches automatically](https://docs.gitbutler.com/features/branch-management/upstream-integration) when you advance the base branch. The diff for each branch is ready for a PR. When maintainers request fixes, they just go on the correct branch, no issues. [Agents love it](https://vcbench.dev/)! As a bonus you see PRs too.
 
 With only Git, local `master` would end up with both fixes, and you'd rebase it every time `origin/master` moves. I can't even tell where my fixes are here:
 
@@ -68,8 +68,6 @@ $ git log --graph --oneline --decorate -9 master origin/master
 ```
 
 You could also rebase your fixes with `origin/master`, then apply one by one. Or you could keep them in the same branch, but that makes it annoying to open PRs.
-
-GitButler takes care of everything, including [rebasing all branches automatically](https://docs.gitbutler.com/features/branch-management/upstream-integration) when you advance the base branch. The diff for each branch is ready for a PR. When maintainers request fixes, they just go on the correct branch, no issues. [Agents love it](https://vcbench.dev/)!
 
 I do the same with GitButler itself, since I work there (disclaimer). My local checkout of the [GitButler repository](https://github.com/gitbutlerapp/gitbutler) runs with all of these branches applied. You can also see some [stacks](https://docs.gitbutler.com/features/branch-management/stacked-branches) and one open PR.
 
