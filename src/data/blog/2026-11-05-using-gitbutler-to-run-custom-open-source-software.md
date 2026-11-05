@@ -12,7 +12,7 @@ Use case for [GitButler](https://gitbutler.com): when you want to run a custom v
 - [#67: feat: terminal line height is a setting](https://github.com/herdrdev/herdr-app/pull/67)
 - [#596: feat: a setting turns off agent alert toasts](https://github.com/herdrdev/herdr-app/pull/596)
 
-In the local workspace, both branches are **applied at the same time!**. GitButler calls these [parallel branches](https://docs.gitbutler.com/features/branch-management/virtual-branches). This is what [`but status`](https://docs.gitbutler.com/cli-overview) shows in my local checkout:
+In the local workspace, both branches are **applied at the same time!** GitButler calls these [parallel branches](https://docs.gitbutler.com/features/branch-management/virtual-branches). This is what [`but status`](https://docs.gitbutler.com/cli-overview) shows in my local checkout:
 
 ```ansi
 $ but status
@@ -69,7 +69,7 @@ $ git log --graph --oneline --decorate -9 master origin/master
 
 With Git, you could also rebase your fixes with `origin/master`, then apply one by one. Or you could keep them in the same branch, but that makes it annoying to open PRs. There are options, but none of them are great.
 
-I do the same with GitButler itself, since I work there (disclaimer). My local checkout of the [GitButler repository](https://github.com/gitbutlerapp/gitbutler) runs with all of these branches applied. You can also see some [stacks](https://docs.gitbutler.com/features/branch-management/stacked-branches)!.
+I do the same with GitButler itself, since I work there (disclaimer). My local checkout of the [GitButler repository](https://github.com/gitbutlerapp/gitbutler) runs with all of these branches applied. You can also see some [stacks](https://docs.gitbutler.com/features/branch-management/stacked-branches)!
 
 ```ansi
 $ but status
