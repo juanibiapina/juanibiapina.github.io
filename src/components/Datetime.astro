@@ -1,11 +1,5 @@
 ---
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-import { SITE } from "@/config";
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import { getPostDate } from "@/utils/getPostDate";
 
 type Props = {
   class?: string;
@@ -23,14 +17,11 @@ const {
   readingTime,
 } = Astro.props;
 
-/* ========== Formatted Datetime ========== */
-const isModified = modDatetime && modDatetime > pubDatetime;
-
-const datetime = dayjs(isModified ? modDatetime : pubDatetime).tz(
-  postTimezone || SITE.timezone
-);
-
-const date = datetime.format("YYYY-MM-DD");
+const { isModified, iso, label } = getPostDate({
+  pubDatetime,
+  modDatetime,
+  timezone: postTimezone,
+});
 ---
 
 <div class:list={["flex items-center gap-x-2 opacity-75", className]}>
@@ -40,7 +31,7 @@ const date = datetime.format("YYYY-MM-DD");
     )
   }
   <span class="text-sm">
-    <time datetime={datetime.toISOString()}>{date}</time>
+    <time datetime={iso}>{label}</time>
     {readingTime && <span> · {readingTime} min read</span>}
   </span>
 </div>
