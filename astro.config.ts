@@ -16,6 +16,9 @@ import { SITE } from "./src/config";
 export default defineConfig({
   site: SITE.website,
   integrations: [sitemap()],
+  redirects: {
+    "/posts/2026-11-05-gitbutler-use-case": "/posts/2026-11-05-using-gitbutler-to-run-custom-open-source-software",
+  },
   build: {
     // Inline all stylesheets into the HTML to avoid render-blocking CSS requests.
     // The site only emits a single Tailwind/global bundle, so this trades one extra
