@@ -67,9 +67,9 @@ $ git log --graph --oneline --decorate -9 master origin/master
 * [33me4906d2[0m fix: changes list fills the panel and scrolls through every changed file (#474)
 ```
 
-You could also rebase your fixes with `origin/master`, then apply one by one. Or you could keep them in the same branch, but that makes it annoying to open PRs.
+With Git, you could also rebase your fixes with `origin/master`, then apply one by one. Or you could keep them in the same branch, but that makes it annoying to open PRs. There are options, but none of them are great.
 
-I do the same with GitButler itself, since I work there (disclaimer). My local checkout of the [GitButler repository](https://github.com/gitbutlerapp/gitbutler) runs with all of these branches applied. You can also see some [stacks](https://docs.gitbutler.com/features/branch-management/stacked-branches) and one open PR.
+I do the same with GitButler itself, since I work there (disclaimer). My local checkout of the [GitButler repository](https://github.com/gitbutlerapp/gitbutler) runs with all of these branches applied. You can also see some [stacks](https://docs.gitbutler.com/features/branch-management/stacked-branches)!.
 
 ```ansi
 $ but status
