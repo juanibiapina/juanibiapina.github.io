@@ -1,0 +1,66 @@
+---
+const GISCUS = {
+  repo: "juanibiapina/juanibiapina.github.io",
+  repoId: "MDEwOlJlcG9zaXRvcnkxNTI2OTA5MDI=",
+  category: "Comments",
+  categoryId: "DIC_kwDOCRng1s4DKdvG",
+};
+---
+
+<section id="comments" class="mt-8" data-pagefind-ignore>
+  <h2 class="mb-4 text-lg font-bold text-foreground-bright">Comments</h2>
+  <div
+    id="giscus-container"
+    data-repo={GISCUS.repo}
+    data-repo-id={GISCUS.repoId}
+    data-category={GISCUS.category}
+    data-category-id={GISCUS.categoryId}
+  >
+  </div>
+</section>
+
+<script>
+  const giscusTheme = () =>
+    document.documentElement.dataset.theme === "dark"
+      ? "transparent_dark"
+      : "light";
+
+  const container = document.getElementById("giscus-container");
+
+  if (container) {
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    Object.entries({
+      repo: container.dataset.repo,
+      repoId: container.dataset.repoId,
+      category: container.dataset.category,
+      categoryId: container.dataset.categoryId,
+      mapping: "pathname",
+      strict: "1",
+      reactionsEnabled: "1",
+      emitMetadata: "0",
+      inputPosition: "top",
+      theme: giscusTheme(),
+      lang: "en",
+      loading: "lazy",
+    }).forEach(([key, value]) => {
+      if (value) script.dataset[key] = value;
+    });
+    container.appendChild(script);
+
+    new MutationObserver(() => {
+      const frame = document.querySelector<HTMLIFrameElement>(
+        "iframe.giscus-frame"
+      );
+      frame?.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme: giscusTheme() } } },
+        "https://giscus.app"
+      );
+    }).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+  }
+</script>

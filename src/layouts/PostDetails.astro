@@ -9,6 +9,7 @@ import Datetime from "@/components/Datetime.astro";
 import EditPost from "@/components/EditPost.astro";
 import ShareLinks from "@/components/ShareLinks.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
+import Comments from "@/components/Comments.astro";
 import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
 import { getReadingTime, getWordCount } from "@/utils/getReadingTime";
@@ -198,6 +199,10 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
         )
       }
     </div>
+
+    <hr class="my-6 border-dashed" />
+
+    <Comments />
   </main>
   <Footer />
 </Layout>
