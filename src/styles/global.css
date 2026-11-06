@@ -49,6 +49,7 @@ html[data-theme="dark"] {
   --color-border-hover: var(--border-hover);
   --color-diff-add: var(--diff-add);
   --color-diff-remove: var(--diff-remove);
+  --container-page: 56rem;
 }
 
 @layer base {
@@ -59,11 +60,14 @@ html[data-theme="dark"] {
   html {
     @apply overflow-y-scroll scroll-smooth;
   }
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
   body {
     @apply flex min-h-svh flex-col bg-background text-foreground;
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-    font-size: 13px;
-    line-height: 1.65;
+    font-size: 14px;
+    line-height: 1.75;
   }
   ::selection {
     background: var(--selection);
