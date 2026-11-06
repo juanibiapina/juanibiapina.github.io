@@ -18,8 +18,8 @@
   --tw-prose-pre-bg: var(--muted);
   --tw-prose-th-borders: var(--border);
   --tw-prose-td-borders: var(--border);
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.75;
 
   :is(h1, h2, h3, h4, h5, h6) {
     margin-bottom: 0.75rem;

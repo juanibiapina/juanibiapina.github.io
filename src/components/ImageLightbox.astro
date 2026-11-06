@@ -1,0 +1,61 @@
+<dialog
+  id="image-lightbox"
+  aria-label="Expanded image"
+  autofocus
+  class="m-0 h-dvh max-h-none w-dvw max-w-none items-center justify-center border-0 bg-transparent p-4 open:flex backdrop:bg-background/95"
+>
+  <form method="dialog" class="fixed end-4 top-4">
+    <button
+      aria-label="Close"
+      class="rounded border border-border bg-background px-3 py-1 text-lg leading-6 text-muted-foreground hover:text-accent"
+    >
+      ×
+    </button>
+  </form>
+  <img
+    id="image-lightbox-img"
+    alt=""
+    class="max-h-full max-w-full border-2 border-border object-contain"
+  />
+</dialog>
+
+<script is:inline>
+  (() => {
+    const dialog = document.getElementById("image-lightbox");
+    const expanded = document.getElementById("image-lightbox-img");
+    if (!dialog || !expanded) return;
+
+    const largestSource = img => {
+      const candidates = (img.getAttribute("srcset") ?? "")
+        .split(",")
+        .map(entry => entry.trim().split(/\s+/))
+        .filter(([url, size]) => url && size?.endsWith("w"))
+        .map(([url, size]) => ({ url, width: parseInt(size, 10) }))
+        .sort((a, b) => b.width - a.width);
+      return candidates[0]?.url ?? img.currentSrc ?? img.src;
+    };
+
+    const open = img => {
+      expanded.src = largestSource(img);
+      expanded.alt = img.alt;
+      dialog.showModal();
+    };
+
+    for (const img of document.querySelectorAll("#article img, img[data-lightbox]")) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.ariaLabel = img.alt ? `Expand image: ${img.alt}` : "Expand image";
+      button.className = "block w-full cursor-zoom-in";
+      img.replaceWith(button);
+      button.appendChild(img);
+      button.addEventListener("click", () => open(img));
+    }
+
+    dialog.addEventListener("click", event => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("close", () => {
+      expanded.removeAttribute("src");
+    });
+  })();
+</script>

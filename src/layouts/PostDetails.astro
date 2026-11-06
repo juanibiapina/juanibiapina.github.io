@@ -10,6 +10,7 @@ import EditPost from "@/components/EditPost.astro";
 import ShareLinks from "@/components/ShareLinks.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
 import Comments from "@/components/Comments.astro";
+import ImageLightbox from "@/components/ImageLightbox.astro";
 import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
 import { getReadingTime, getWordCount } from "@/utils/getReadingTime";
@@ -101,7 +102,7 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
   <Header />
   <main
     id="main-content"
-    class="mx-auto mt-8 w-full max-w-2xl px-4 pb-12"
+    class="mx-auto mt-8 w-full max-w-page px-4 pb-12"
     data-pagefind-body
     data-prev-post={prevPostHref}
     data-next-post={nextPostHref}
@@ -127,9 +128,10 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
         <Image
           src={heroImageAsset}
           alt=""
+          data-lightbox
           class="mt-8 w-full border-2 border-border"
           widths={[480, 768, 1024, 1280]}
-          sizes="(min-width: 672px) 640px, 100vw"
+          sizes="(min-width: 896px) 864px, 100vw"
           format="webp"
           loading="eager"
           fetchpriority="high"
@@ -141,6 +143,7 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
         <img
           src={heroImageSrc}
           alt=""
+          data-lightbox
           class="mt-8 w-full border-2 border-border"
           loading="eager"
           fetchpriority="high"
@@ -149,7 +152,7 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
     }
     <article
       id="article"
-      class="prose mt-8 w-full max-w-2xl prose-img:border-2 prose-img:border-border"
+      class="prose mt-8 w-full max-w-none prose-img:border-2 prose-img:border-border"
     >
       <Content />
     </article>
@@ -204,6 +207,7 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
 
     <Comments />
   </main>
+  <ImageLightbox />
   <Footer />
 </Layout>
 
@@ -322,6 +326,8 @@ const nextPostHref = nextPost ? getPath(nextPost.id, nextPost.filePath) : null;
       ) {
         return;
       }
+
+      if (document.querySelector("dialog[open]")) return;
 
       const mainContent = document.getElementById("main-content");
       if (!mainContent) return;
