@@ -5,6 +5,7 @@ import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import { transformerNotationDiff } from "@shikijs/transformers";
 import { lightTheme, darkTheme } from "./src/utils/shikiThemes";
+import { rehypeImageSizes } from "./src/utils/rehypeImageSizes";
 import { SITE } from "./src/config";
 
 // https://astro.build/config
@@ -22,6 +23,7 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    rehypePlugins: [rehypeImageSizes],
     shikiConfig: {
       themes: { light: lightTheme, dark: darkTheme },
       defaultColor: "light-dark()",
