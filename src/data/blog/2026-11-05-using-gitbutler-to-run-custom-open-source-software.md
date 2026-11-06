@@ -126,4 +126,4 @@ $ but status
 
 If you prefer a GUI, this is my GitButler checkout in the graph view, a bit later, with a different set of branches. Each applied branch sits on top of `origin/master`:
 
-![GitButler graph view with several applied branches on top of origin/master](../../assets/blog/using-gitbutler-to-run-custom-open-source-software/gui-graph.jpg)
+![GitButler graph view with several applied branches on top of origin/master](../../assets/blog/using-gitbutler-to-run-custom-open-source-software/gui-graph.png)
