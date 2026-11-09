@@ -4,11 +4,10 @@ updates:
   - package-ecosystem: "npm"
     # Look for `package.json` and `lock` files in the `root` directory
     directory: "/"
-    # Check for updates every Monday at 10:00 AM CET
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "10:00"
+      time: "03:00"
       timezone: "Europe/Berlin"
     # Raise pull requests for version updates against the default branch
     target-branch: "main"
@@ -24,7 +23,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "10:00"
+      time: "03:00"
       timezone: "Europe/Berlin"
     target-branch: "main"
     labels:
