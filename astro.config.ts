@@ -11,7 +11,7 @@ import { SITE } from "./src/config";
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: page => !page.endsWith("/qr/") })],
   redirects: {
     "/posts/2026-11-05-gitbutler-use-case": "/posts/2026-11-05-using-gitbutler-to-run-custom-open-source-software",
   },
